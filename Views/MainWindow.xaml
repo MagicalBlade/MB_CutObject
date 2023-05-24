@@ -1,0 +1,23 @@
+﻿<tsd:PluginWindowBase x:Class="MB_CutObject.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:tsd="clr-namespace:Tekla.Structures.Dialog;assembly=Tekla.Structures.Dialog"
+        xmlns:local="clr-namespace:MB_CutObject.Views"
+        xmlns:UIControls="clr-namespace:Tekla.Structures.Dialog.UIControls;assembly=Tekla.Structures.Dialog" 
+        mc:Ignorable="d"
+        Title="Вырезы" Height="450" Width="800">
+    <Grid>
+
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="159,74,0,0" TextWrapping="Wrap" Text="{Binding Height, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <UIControls:WpfFilterCheckBox HorizontalAlignment="Left" Margin="136,78,0,0" VerticalAlignment="Top" AttributeName="name"/>
+        <Label x:Name="label" Content="Высота" HorizontalAlignment="Left" Margin="20,71,0,0" VerticalAlignment="Top" Height="30" Width="100"/>
+        
+
+
+        <UIControls:WpfSaveLoad HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+        <UIControls:WpfOkApplyModifyGetOnOffCancel HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ApplyClicked="WPFOkApplyModifyGetOnOffCancel_ApplyClicked" CancelClicked="WPFOkApplyModifyGetOnOffCancel_CancelClicked" GetClicked="WPFOkApplyModifyGetOnOffCancel_GetClicked" OkClicked="WPFOkApplyModifyGetOnOffCancel_OkClicked" OnOffClicked="WPFOkApplyModifyGetOnOffCancel_OnOffClicked" ModifyClicked="WPFOkApplyModifyGetOnOffCancel_ModifyClicked"/>
+
+    </Grid>
+</tsd:PluginWindowBase>
