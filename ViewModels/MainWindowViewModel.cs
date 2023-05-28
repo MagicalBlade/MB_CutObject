@@ -14,6 +14,7 @@ namespace MB_CutObject.ViewModels
     {
         #region Fields
         private double height = 0.0;
+        private double width = 0.0;
 
         #endregion
 
@@ -24,7 +25,12 @@ namespace MB_CutObject.ViewModels
             get { return height; }
             set { height = value; OnPropertyChanged("Height"); }
         }
-
+        [StructuresDialog("width", typeof(TD.Double))]
+        public double Width
+        {
+            get { return width; }
+            set { width = value; OnPropertyChanged("Width"); }
+        }
 
         #endregion
 

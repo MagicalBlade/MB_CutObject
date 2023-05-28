@@ -22,7 +22,8 @@ namespace MB_CutObject.Models
         //
         [StructuresField("height")]
         public double height;
-
+        [StructuresField("width")]
+        public double width;
 
         #endregion
     }
@@ -38,6 +39,7 @@ namespace MB_CutObject.Models
         // Define variables for the field values.
         //
         private double _Height = 0.0;
+        private double _Width = 0.0;
 
         #endregion
 
@@ -71,7 +73,7 @@ namespace MB_CutObject.Models
             //
             List<InputDefinition> Input = new List<InputDefinition>();
             Picker Picker = new Picker();
-            Part part = (Part)Picker.PickObject(Picker.PickObjectEnum.PICK_ONE_PART);
+            Part part =  (Part)Picker.PickObject(Picker.PickObjectEnum.PICK_ONE_PART);
             ArrayList PickedPoints = Picker.PickPoints(Picker.PickPointEnum.PICK_TWO_POINTS);
 
             Input.Add(new InputDefinition(PickedPoints));
@@ -86,32 +88,54 @@ namespace MB_CutObject.Models
             {
                 GetValuesFromDialog();
 
+                if (Input == null)
+                {
+                    return false;
+                }
                 ArrayList Points = (ArrayList)Input[0].GetInput();
-                Part part = (Part)Model.SelectModelObject((Identifier)Input[1].GetInput());
-                ContourPoint point1 = new ContourPoint(Points[0] as TSG.Point, null);
-                ContourPoint point2 = new ContourPoint(Points[1] as TSG.Point, null);
-                ContourPoint point3 = new ContourPoint(new TSG.Point(point1.X, _Height, 0), null);
+                Part selectPart = (Part)Model.SelectModelObject((Identifier)Input[1].GetInput());
+                if (selectPart == null)
+                {
+                    MessageBox.Show("Выбранная позиция равно null");
+                    return false;
+                }
+                ContourPoint selectpoint1 = new ContourPoint(Points[0] as TSG.Point, null);
+                ContourPoint selectpoint2 = new ContourPoint(Points[1] as TSG.Point, null);
 
-                ContourPlate contourPlate = new ContourPlate();
-                contourPlate.Profile.ProfileString = "PL10";
-                contourPlate.Material.MaterialString = "Steel_Undefined";
-                contourPlate.AddContourPoint(point1);
-                contourPlate.AddContourPoint(point2);
-                contourPlate.AddContourPoint(point3);
-                contourPlate.Class = BooleanPart.BooleanOperativeClassName;
-                contourPlate.Insert();
+
+                Solid solidpart = selectPart.GetSolid();
+                double centerpart = (solidpart.MaximumPoint.Z + solidpart.MinimumPoint.Z)/2;
+
+
+                ContourPlate booleanCP = new ContourPlate();
+                double thicknessCut = Math.Round(Math.Abs(solidpart.MaximumPoint.Z) + Math.Abs(solidpart.MinimumPoint.Z)) + 10;
+                booleanCP.Profile.ProfileString = $"PL{thicknessCut}";
+                booleanCP.Material.MaterialString = "Steel_Undefined";
+                ContourPoint point1 = new ContourPoint(new TSG.Point(0, 0, centerpart), null);
+                ContourPoint point2 = new ContourPoint(new TSG.Point(0, _Height, centerpart), null);
+                ContourPoint point3 = new ContourPoint(new TSG.Point(_Width, _Height, centerpart), null);
+                ContourPoint point4 = new ContourPoint(new TSG.Point(_Width, 0, centerpart), null);
+
+                booleanCP.AddContourPoint(point1);
+                booleanCP.AddContourPoint(point2);
+                booleanCP.AddContourPoint(point3);
+                booleanCP.AddContourPoint(point4);
+                booleanCP.Class = BooleanPart.BooleanOperativeClassName;
+                booleanCP.Insert();
 
                 BooleanPart booleanPart = new BooleanPart();
-                booleanPart.Father = part;
-                booleanPart.SetOperativePart(contourPlate);
+                booleanPart.Father = selectPart;
+                booleanPart.SetOperativePart(booleanCP);
                 booleanPart.Insert();
-                contourPlate.Delete();
+                booleanCP.Delete();
                 Model.CommitChanges();
-                Operation.DisplayPrompt("Test");
+                Operation.DisplayPrompt("Готово");
+                
 
             }
             catch (Exception Exc)
             {
+                MessageBox.Show("Ошибка в start");
                 MessageBox.Show(Exc.ToString());
             }
 
@@ -126,10 +150,14 @@ namespace MB_CutObject.Models
         private void GetValuesFromDialog()
         {
             _Height = Data.height;
+            _Width = Data.width;
 
 
             if (IsDefaultValue(_Height))
                 _Height = 50;
+
+            if (IsDefaultValue(_Width))
+                _Width = 50;
 
         }
 

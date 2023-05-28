@@ -8,16 +8,63 @@
         xmlns:UIControls="clr-namespace:Tekla.Structures.Dialog.UIControls;assembly=Tekla.Structures.Dialog" 
         mc:Ignorable="d"
         Title="Вырезы" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="ItemsControl">
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="80"/>
+        </Style>
+        <Style TargetType="UIControls:WpfFilterCheckBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="l_Height" Content="Высота"/>
+                    <UIControls:WpfFilterCheckBox AttributeName="name"/>
+                    <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}"/>
+                </StackPanel>
 
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="159,74,0,0" TextWrapping="Wrap" Text="{Binding Height, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <UIControls:WpfFilterCheckBox HorizontalAlignment="Left" Margin="136,78,0,0" VerticalAlignment="Top" AttributeName="name"/>
-        <Label x:Name="label" Content="Высота" HorizontalAlignment="Left" Margin="20,71,0,0" VerticalAlignment="Top" Height="30" Width="100"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="l_Width" Content="Длина"/>
+                    <UIControls:WpfFilterCheckBox AttributeName="width"/>
+                    <TextBox x:Name="tb_Width" Text="{Binding Width, Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
         
 
 
-        <UIControls:WpfSaveLoad HorizontalAlignment="Stretch" VerticalAlignment="Top" />
-        <UIControls:WpfOkApplyModifyGetOnOffCancel HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ApplyClicked="WPFOkApplyModifyGetOnOffCancel_ApplyClicked" CancelClicked="WPFOkApplyModifyGetOnOffCancel_CancelClicked" GetClicked="WPFOkApplyModifyGetOnOffCancel_GetClicked" OkClicked="WPFOkApplyModifyGetOnOffCancel_OkClicked" OnOffClicked="WPFOkApplyModifyGetOnOffCancel_OnOffClicked" ModifyClicked="WPFOkApplyModifyGetOnOffCancel_ModifyClicked"/>
+        
+
+
+        <UIControls:WpfSaveLoad Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+        <UIControls:WpfOkApplyModifyGetOnOffCancel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ApplyClicked="WPFOkApplyModifyGetOnOffCancel_ApplyClicked" CancelClicked="WPFOkApplyModifyGetOnOffCancel_CancelClicked" GetClicked="WPFOkApplyModifyGetOnOffCancel_GetClicked" OkClicked="WPFOkApplyModifyGetOnOffCancel_OkClicked" OnOffClicked="WPFOkApplyModifyGetOnOffCancel_OnOffClicked" ModifyClicked="WPFOkApplyModifyGetOnOffCancel_ModifyClicked"/>
 
     </Grid>
 </tsd:PluginWindowBase>
