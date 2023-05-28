@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:MB_CutObject.Views"
         xmlns:UIControls="clr-namespace:Tekla.Structures.Dialog.UIControls;assembly=Tekla.Structures.Dialog" 
         mc:Ignorable="d"
-        Title="Вырезы" Height="450" Width="800">
+        Title="Вырезы" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="#FFF0F0F0" >
     <Window.Resources>
         <Style TargetType="ItemsControl">
             <Setter Property="Padding" Value="2"/>
@@ -19,13 +19,10 @@
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="100"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Width" Value="80"/>
         </Style>
         <Style TargetType="UIControls:WpfFilterCheckBox">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -45,16 +42,53 @@
         <Grid Grid.Row="1">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <Label x:Name="l_Height" Content="Высота"/>
+                    <Label x:Name="l_Height" Content="H" Width="80"/>
                     <UIControls:WpfFilterCheckBox AttributeName="name"/>
-                    <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}"/>
+                    <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}" Height="25" Width="100"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <Label x:Name="l_Width" Content="Длина"/>
+                    <Label x:Name="l_Width" Content="L" Width="80"/>
                     <UIControls:WpfFilterCheckBox AttributeName="width"/>
-                    <TextBox x:Name="tb_Width" Text="{Binding Width, Mode=TwoWay}"/>
+                    <TextBox x:Name="tb_Width" Text="{Binding Width, Mode=TwoWay}" Height="25" Width="100"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <UIControls:WpfFilterCheckBox AttributeName="type"/>
+                    <ComboBox x:Name="cb_typeCut" SelectedIndex="{Binding TypeCut}">
+                        <ComboBoxItem>
+                            <Canvas Margin="5" Width="150" Height="150">
+                                <Path Stroke="Black" Fill="#FFF0F0F0" StrokeThickness="1.5">
+                                    <Path.Data>
+                                        <PathGeometry>
+                                            <PathFigure StartPoint="60,2">
+                                                <LineSegment Point="10,2"/>
+                                                <LineSegment Point="10,82"/>
+                                                <LineSegment Point="90,82"/>
+                                                <LineSegment Point="90,32"/>
+                                                <ArcSegment Point="60,2" Size="30,32"/>
+                                            </PathFigure>
+                                        </PathGeometry>
+                                    </Path.Data>
+                                </Path>
+                                <Path Stroke="Black" Fill="#FFF0F0F0" StrokeThickness="0.5">
+                                    <Path.Data>
+                                        <GeometryGroup>
+                                            <LineGeometry StartPoint="10,2" EndPoint="3,2"/>
+                                            <LineGeometry StartPoint="10,82" EndPoint="3,82"/>
+                                            <LineGeometry StartPoint="5,84" EndPoint="5,0"/>
+                                            <LineGeometry StartPoint="7,84" EndPoint="3,80"/>
+                                        </GeometryGroup>
+                                    </Path.Data>
+                                </Path>
+                            </Canvas>
+                        </ComboBoxItem>
+                        
+                    </ComboBox>
+                    
+                </StackPanel>
+
+                
+
             </StackPanel>
         </Grid>
         

@@ -15,6 +15,7 @@ namespace MB_CutObject.ViewModels
         #region Fields
         private double height = 0.0;
         private double width = 0.0;
+        private int typeCut = 0;
 
         #endregion
 
@@ -30,6 +31,12 @@ namespace MB_CutObject.ViewModels
         {
             get { return width; }
             set { width = value; OnPropertyChanged("Width"); }
+        }
+        [StructuresDialog("typeCut", typeof(TD.Integer))]
+        public int TypeCut
+        {
+            get { return typeCut; }
+            set { typeCut = value; OnPropertyChanged("TypeCut"); }
         }
 
         #endregion

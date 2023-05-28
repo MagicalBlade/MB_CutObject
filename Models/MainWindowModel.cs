@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,7 +25,8 @@ namespace MB_CutObject.Models
         public double height;
         [StructuresField("width")]
         public double width;
-
+        [StructuresField("typeCut")]
+        public int typeCut;
         #endregion
     }
 
@@ -40,6 +42,7 @@ namespace MB_CutObject.Models
         //
         private double _Height = 0.0;
         private double _Width = 0.0;
+        private int _TypeCut = 0;
 
         #endregion
 
@@ -111,15 +114,24 @@ namespace MB_CutObject.Models
                 double thicknessCut = Math.Round(Math.Abs(solidpart.MaximumPoint.Z) + Math.Abs(solidpart.MinimumPoint.Z)) + 10;
                 booleanCP.Profile.ProfileString = $"PL{thicknessCut}";
                 booleanCP.Material.MaterialString = "Steel_Undefined";
-                ContourPoint point1 = new ContourPoint(new TSG.Point(0, 0, centerpart), null);
-                ContourPoint point2 = new ContourPoint(new TSG.Point(0, _Height, centerpart), null);
-                ContourPoint point3 = new ContourPoint(new TSG.Point(_Width, _Height, centerpart), null);
-                ContourPoint point4 = new ContourPoint(new TSG.Point(_Width, 0, centerpart), null);
 
-                booleanCP.AddContourPoint(point1);
-                booleanCP.AddContourPoint(point2);
-                booleanCP.AddContourPoint(point3);
-                booleanCP.AddContourPoint(point4);
+                switch (_TypeCut)
+                {
+                    case 0:
+                        ContourPoint point1 = new ContourPoint(new TSG.Point(0, 0, centerpart), null);
+                        ContourPoint point2 = new ContourPoint(new TSG.Point(0, _Height, centerpart), null);
+                        ContourPoint point3 = new ContourPoint(new TSG.Point(_Width, _Height, centerpart), null);
+                        ContourPoint point4 = new ContourPoint(new TSG.Point(_Width, 0, centerpart), null);
+                        booleanCP.AddContourPoint(point1);
+                        booleanCP.AddContourPoint(point2);
+                        booleanCP.AddContourPoint(point3);
+                        booleanCP.AddContourPoint(point4);
+                        break;
+                    default:
+                        break;
+                }
+                
+
                 booleanCP.Class = BooleanPart.BooleanOperativeClassName;
                 booleanCP.Insert();
 
@@ -131,7 +143,7 @@ namespace MB_CutObject.Models
                 Model.CommitChanges();
                 Operation.DisplayPrompt("Готово");
                 
-
+                
             }
             catch (Exception Exc)
             {
@@ -151,6 +163,7 @@ namespace MB_CutObject.Models
         {
             _Height = Data.height;
             _Width = Data.width;
+            _TypeCut = Data.typeCut;
 
 
             if (IsDefaultValue(_Height))
@@ -158,6 +171,8 @@ namespace MB_CutObject.Models
 
             if (IsDefaultValue(_Width))
                 _Width = 50;
+            if (IsDefaultValue(_TypeCut))
+                _TypeCut = 50;
 
         }
 
