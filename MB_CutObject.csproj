@@ -101,6 +101,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\1.tif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)$(TargetName).dll" "c:\TeklaStructures\2020.0\nt\bin\plugins\MyPlugins\" /y

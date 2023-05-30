@@ -172,7 +172,7 @@ namespace MB_CutObject.Models
             if (IsDefaultValue(_Width))
                 _Width = 50;
             if (IsDefaultValue(_TypeCut))
-                _TypeCut = 50;
+                _TypeCut = 0;
 
         }
 
