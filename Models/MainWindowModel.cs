@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Tekla.Structures;
+using Tekla.Structures.Geometry3d;
 using Tekla.Structures.Model;
 using Tekla.Structures.Model.Operations;
 using Tekla.Structures.Model.UI;
@@ -25,6 +26,12 @@ namespace MB_CutObject.Models
         public double height;
         [StructuresField("width")]
         public double width;
+        [StructuresField("radius")]
+        public double radius;
+        [StructuresField("offsetH")]
+        public double offsetH;
+        [StructuresField("offsetL")]
+        public double offsetL;
         [StructuresField("typeCut")]
         public int typeCut;
         #endregion
@@ -42,6 +49,9 @@ namespace MB_CutObject.Models
         //
         private double _Height = 0.0;
         private double _Width = 0.0;
+        private double _Radius = 0.0;
+        private double _OffsetH = 0.0;
+        private double _OffsetL = 0.0;
         private int _TypeCut = 0;
 
         #endregion
@@ -104,6 +114,7 @@ namespace MB_CutObject.Models
                 }
                 ContourPoint selectpoint1 = new ContourPoint(Points[0] as TSG.Point, null);
                 ContourPoint selectpoint2 = new ContourPoint(Points[1] as TSG.Point, null);
+                WorkPlaneHandler workPlaneHandler = Model.GetWorkPlaneHandler();
 
 
                 Solid solidpart = selectPart.GetSolid();
@@ -118,10 +129,10 @@ namespace MB_CutObject.Models
                 switch (_TypeCut)
                 {
                     case 0:
-                        ContourPoint point1 = new ContourPoint(new TSG.Point(0, 0, centerpart), null);
-                        ContourPoint point2 = new ContourPoint(new TSG.Point(0, _Height, centerpart), null);
-                        ContourPoint point3 = new ContourPoint(new TSG.Point(_Width, _Height, centerpart), null);
-                        ContourPoint point4 = new ContourPoint(new TSG.Point(_Width, 0, centerpart), null);
+                        ContourPoint point1 = new ContourPoint(new TSG.Point(0 - _OffsetL, 0 - _OffsetH, centerpart), null);
+                        ContourPoint point2 = new ContourPoint(new TSG.Point(0 - _OffsetL, _Height, centerpart), null);
+                        ContourPoint point3 = new ContourPoint(new TSG.Point(_Width, _Height, centerpart), new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        ContourPoint point4 = new ContourPoint(new TSG.Point(_Width, 0 - _OffsetH, centerpart), null);
                         booleanCP.AddContourPoint(point1);
                         booleanCP.AddContourPoint(point2);
                         booleanCP.AddContourPoint(point3);
@@ -130,10 +141,19 @@ namespace MB_CutObject.Models
                     default:
                         break;
                 }
-                
+                CoordinateSystem startCS = new CoordinateSystem(
+                    new TSG.Point(0,0,0),
+                    new TSG.Vector(new TSG.Point(1, 0, 0)),
+                    new TSG.Vector(new TSG.Point(0, 1, 0)));
+                CoordinateSystem endCS = new CoordinateSystem(
+                    selectpoint1,
+                    new TSG.Vector(new TSG.Point(selectpoint2.X, selectpoint2.Y, 0)),
+                    new TSG.Vector(new TSG.Point(selectpoint2.Y, selectpoint2.X, 0)));
+                //Operation.MoveObject(booleanCP, new TSG.Vector(selectpoint2));
 
                 booleanCP.Class = BooleanPart.BooleanOperativeClassName;
                 booleanCP.Insert();
+                Operation.MoveObject(booleanCP, startCS, endCS);
 
                 BooleanPart booleanPart = new BooleanPart();
                 booleanPart.Father = selectPart;
@@ -163,14 +183,22 @@ namespace MB_CutObject.Models
         {
             _Height = Data.height;
             _Width = Data.width;
+            _Radius = Data.radius;
+            _OffsetH = Data.offsetH;
+            _OffsetL = Data.offsetL;
             _TypeCut = Data.typeCut;
 
 
             if (IsDefaultValue(_Height))
                 _Height = 50;
-
             if (IsDefaultValue(_Width))
                 _Width = 50;
+            if (IsDefaultValue(_Radius))
+                _Radius = 12.5;
+            if (IsDefaultValue(_OffsetH))
+                _OffsetH = 0;
+            if (IsDefaultValue(_OffsetL))
+                _OffsetL = 0;
             if (IsDefaultValue(_TypeCut))
                 _TypeCut = 0;
 
