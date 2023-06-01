@@ -144,9 +144,9 @@ namespace MB_CutObject.Models
                     default:
                         break;
                 }
-                
+                selectpoint1.Z = centerpart;
                 CoordinateSystem startCS = new CoordinateSystem(
-                    new TSG.Point(0,0,0),
+                    new TSG.Point(0,0, centerpart),
                     new TSG.Vector(new TSG.Point(1, 0, 0)),
                     new TSG.Vector(new TSG.Point(0, 1, 0)));
                 CoordinateSystem endCS = new CoordinateSystem(
