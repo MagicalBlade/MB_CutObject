@@ -19,6 +19,7 @@ namespace MB_CutObject.ViewModels
         private double offsetH = 0.0;
         private double offsetL = 0.0;
         private int typeCut = 0;
+        private int mirror = 0;
 
         #endregion
 
@@ -59,7 +60,12 @@ namespace MB_CutObject.ViewModels
             get { return typeCut; }
             set { typeCut = value; OnPropertyChanged("TypeCut"); }
         }
-
+        [StructuresDialog("mirror", typeof(TD.Integer))]
+        public int Mirror
+        {
+            get { return mirror; }
+            set { mirror = value; OnPropertyChanged("Mirror"); }
+        }
         #endregion
 
 

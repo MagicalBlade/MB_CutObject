@@ -34,6 +34,8 @@ namespace MB_CutObject.Models
         public double offsetL;
         [StructuresField("typeCut")]
         public int typeCut;
+        [StructuresField("mirror")]
+        public int mirror;
         #endregion
     }
 
@@ -53,6 +55,7 @@ namespace MB_CutObject.Models
         private double _OffsetH = 0.0;
         private double _OffsetL = 0.0;
         private int _TypeCut = 0;
+        private int _Mirror = 0;
 
         #endregion
 
@@ -141,6 +144,7 @@ namespace MB_CutObject.Models
                     default:
                         break;
                 }
+                
                 CoordinateSystem startCS = new CoordinateSystem(
                     new TSG.Point(0,0,0),
                     new TSG.Vector(new TSG.Point(1, 0, 0)),
@@ -149,8 +153,19 @@ namespace MB_CutObject.Models
                     selectpoint1,
                     new TSG.Vector(new TSG.Point(selectpoint2.X, selectpoint2.Y, 0)),
                     new TSG.Vector(new TSG.Point(selectpoint2.Y, selectpoint2.X, 0)));
-                //Operation.MoveObject(booleanCP, new TSG.Vector(selectpoint2));
-
+                switch (_Mirror)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        endCS.AxisX = new TSG.Vector(new TSG.Point(-selectpoint2.X, -selectpoint2.Y, 0));
+                        break;
+                    case 2:
+                        endCS.AxisY = new TSG.Vector(new TSG.Point(selectpoint2.Y, -selectpoint2.X, 0));
+                        break;
+                }
+                
+                
                 booleanCP.Class = BooleanPart.BooleanOperativeClassName;
                 booleanCP.Insert();
                 Operation.MoveObject(booleanCP, startCS, endCS);
@@ -187,6 +202,7 @@ namespace MB_CutObject.Models
             _OffsetH = Data.offsetH;
             _OffsetL = Data.offsetL;
             _TypeCut = Data.typeCut;
+            _Mirror = Data.mirror;
 
 
             if (IsDefaultValue(_Height))
@@ -201,7 +217,8 @@ namespace MB_CutObject.Models
                 _OffsetL = 0;
             if (IsDefaultValue(_TypeCut))
                 _TypeCut = 0;
-
+            if (IsDefaultValue(_Mirror))
+                _Mirror = 0;
         }
 
         // Write your private methods here.

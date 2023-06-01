@@ -70,7 +70,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Label x:Name="l_Height" Content="H" Width="25"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="name"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="height"/>
                         <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -92,6 +92,15 @@
                         <Label x:Name="l_offsetL" Content="L1" Width="25"/>
                         <UIControls:WpfFilterCheckBox AttributeName="offsetL"/>
                         <TextBox x:Name="tb_offsetL" Text="{Binding OffsetL, Mode=TwoWay}" Height="25" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="l_mirror" Content="Зеркально отразить"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="mirror"/>
+                        <ComboBox x:Name="cb_mirror" SelectedIndex="{Binding Mirror}" Width="120">
+                            <TextBlock Text="Нет"/>
+                            <TextBlock Text="Вертикально"/>
+                            <TextBlock Text="Горизонтально"/>
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
