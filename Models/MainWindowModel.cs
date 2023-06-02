@@ -162,7 +162,7 @@ namespace MB_CutObject.Models
                     case 0:
                         break;
                     case 1:
-                        endCS.AxisX = new TSG.Vector(new TSG.Point(selectpoint1.X - (selectpoint2.X - selectpoint1.X), selectpoint1.Y - (selectpoint2.Y - selectpoint1.Y), 1000));
+                        endCS.AxisX = new TSG.Vector(new TSG.Point(selectpoint1.X - (selectpoint2.X - selectpoint1.X), selectpoint1.Y - (selectpoint2.Y - selectpoint1.Y), 1000)); //что то не так. разобраться
                         break;
                     case 2:
                         endCS.AxisY = new TSG.Vector(new TSG.Point(0, 0, -1000));
