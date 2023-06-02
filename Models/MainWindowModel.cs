@@ -146,22 +146,26 @@ namespace MB_CutObject.Models
                 }
                 selectpoint1.Z = centerpart;
                 CoordinateSystem startCS = new CoordinateSystem(
-                    new TSG.Point(0,0, centerpart),
+                    new TSG.Point(0, 0, centerpart),
                     new TSG.Vector(new TSG.Point(1, 0, 0)),
-                    new TSG.Vector(new TSG.Point(0, 1, 0)));
+                    new TSG.Vector(new TSG.Point(0, 0, 1000)));
+                //CoordinateSystem endCS = new CoordinateSystem(
+                //    selectpoint1,
+                //    new TSG.Vector(new TSG.Point(selectpoint2.X, selectpoint2.Y, 0)),
+                //    new TSG.Vector(new TSG.Point(selectpoint2.Y, selectpoint2.X, 0)));
                 CoordinateSystem endCS = new CoordinateSystem(
                     selectpoint1,
                     new TSG.Vector(new TSG.Point(selectpoint2.X, selectpoint2.Y, 0)),
-                    new TSG.Vector(new TSG.Point(selectpoint2.Y, selectpoint2.X, 0)));
+                    new TSG.Vector(new TSG.Point(0, 0, 1000)));
                 switch (_Mirror)
                 {
                     case 0:
                         break;
                     case 1:
-                        endCS.AxisX = new TSG.Vector(new TSG.Point(-selectpoint2.X, -selectpoint2.Y, 0));
+                        endCS.AxisX = new TSG.Vector(new TSG.Point(selectpoint1.X - (selectpoint2.X - selectpoint1.X), selectpoint1.Y - (selectpoint2.Y - selectpoint1.Y), 1000));
                         break;
                     case 2:
-                        endCS.AxisY = new TSG.Vector(new TSG.Point(selectpoint2.Y, -selectpoint2.X, 0));
+                        endCS.AxisY = new TSG.Vector(new TSG.Point(0, 0, -1000));
                         break;
                 }
                 
