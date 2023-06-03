@@ -81,12 +81,13 @@ namespace MB_CutObject.Models
         }
         #endregion
 
-        #region Overrides
+        
+        /// <summary>
+        /// Запрос к пользователю
+        /// </summary>
+        /// <returns></returns>
         public override List<InputDefinition> DefineInput()
         {
-            //
-            // This is an example for selecting two points; change this to suit your needs.
-            //
             List<InputDefinition> Input = new List<InputDefinition>();
             Picker Picker = new Picker();
             Part part =  (Part)Picker.PickObject(Picker.PickObjectEnum.PICK_ONE_PART);
@@ -97,7 +98,11 @@ namespace MB_CutObject.Models
 
             return Input;
         }
-
+        /// <summary>
+        /// Тело библиотеки
+        /// </summary>
+        /// <param name="Input"></param>
+        /// <returns></returns>
         public override bool Run(List<InputDefinition> Input)
         {
             try
@@ -109,26 +114,19 @@ namespace MB_CutObject.Models
                     return false;
                 }
                 ArrayList Points = (ArrayList)Input[0].GetInput();
-                Part selectPart = (Part)Model.SelectModelObject((Identifier)Input[1].GetInput());
-                if (selectPart == null)
-                {
-                    MessageBox.Show("Выбранная позиция равно null");
-                    return false;
-                }
-                ContourPoint selectpoint1 = new ContourPoint(Points[0] as TSG.Point, null);
-                ContourPoint selectpoint2 = new ContourPoint(Points[1] as TSG.Point, null);
-                WorkPlaneHandler workPlaneHandler = Model.GetWorkPlaneHandler();
+                Part selectedPart = (Part)Model.SelectModelObject((Identifier)Input[1].GetInput());
+                ContourPoint selectedpoint1 = new ContourPoint(Points[0] as TSG.Point, null);
+                ContourPoint selectedpoint2 = new ContourPoint(Points[1] as TSG.Point, null);
 
-
-                Solid solidpart = selectPart.GetSolid();
+                Solid solidpart = selectedPart.GetSolid();
                 double centerpart = (solidpart.MaximumPoint.Z + solidpart.MinimumPoint.Z)/2;
-
 
                 ContourPlate booleanCP = new ContourPlate();
                 double thicknessCut = Math.Round(Math.Abs(solidpart.MaximumPoint.Z) + Math.Abs(solidpart.MinimumPoint.Z)) + 10;
                 booleanCP.Profile.ProfileString = $"PL{thicknessCut}";
                 booleanCP.Material.MaterialString = "Steel_Undefined";
-
+                // В зависимости от выбранного типа выреза добавляем точки контурной пластины
+                // Вырез центрируем относитально детали с помощью centerpart
                 switch (_TypeCut)
                 {
                     case 0:
@@ -144,55 +142,49 @@ namespace MB_CutObject.Models
                     default:
                         break;
                 }
-                selectpoint1.Z = centerpart;
+
+                selectedpoint1.Z = centerpart;
                 CoordinateSystem startCS = new CoordinateSystem(
                     new TSG.Point(0, 0, centerpart),
-                    new TSG.Vector(new TSG.Point(1, 0, 0)),
-                    new TSG.Vector(new TSG.Point(0, 0, 1000)));
-                //CoordinateSystem endCS = new CoordinateSystem(
-                //    selectpoint1,
-                //    new TSG.Vector(new TSG.Point(selectpoint2.X, selectpoint2.Y, 0)),
-                //    new TSG.Vector(new TSG.Point(selectpoint2.Y, selectpoint2.X, 0)));
+                    new TSG.Vector(1,0, 0),
+                    new TSG.Vector(0, 0, 1000));
                 CoordinateSystem endCS = new CoordinateSystem(
-                    selectpoint1,
-                    new TSG.Vector(new TSG.Point(selectpoint2.X, selectpoint2.Y, 0)),
-                    new TSG.Vector(new TSG.Point(0, 0, 1000)));
+                    selectedpoint1,
+                    new TSG.Vector(selectedpoint2.X - selectedpoint1.X, selectedpoint2.Y - selectedpoint1.Y, 0),
+                    new TSG.Vector(0, 0, 1000));
+                //Тип отзеркаливания выреза 
                 switch (_Mirror)
                 {
                     case 0:
                         break;
                     case 1:
-                        endCS.AxisX = new TSG.Vector(new TSG.Point(selectpoint1.X - (selectpoint2.X - selectpoint1.X), selectpoint1.Y - (selectpoint2.Y - selectpoint1.Y), 1000)); //что то не так. разобраться
+                        endCS.AxisX = new TSG.Vector(- (selectedpoint2.X - selectedpoint1.X), - (selectedpoint2.Y - selectedpoint1.Y), 0); //что то не так. разобраться
+                        endCS.AxisY = new TSG.Vector(0, 0, -1000);
                         break;
                     case 2:
-                        endCS.AxisY = new TSG.Vector(new TSG.Point(0, 0, -1000));
+                        endCS.AxisY = new TSG.Vector(0, 0, -1000);
                         break;
                 }
-                
                 
                 booleanCP.Class = BooleanPart.BooleanOperativeClassName;
                 booleanCP.Insert();
                 Operation.MoveObject(booleanCP, startCS, endCS);
 
                 BooleanPart booleanPart = new BooleanPart();
-                booleanPart.Father = selectPart;
+                booleanPart.Father = selectedPart;
                 booleanPart.SetOperativePart(booleanCP);
                 booleanPart.Insert();
                 booleanCP.Delete();
                 Model.CommitChanges();
                 Operation.DisplayPrompt("Готово");
-                
-                
             }
             catch (Exception Exc)
             {
                 MessageBox.Show("Ошибка в start");
                 MessageBox.Show(Exc.ToString());
             }
-
             return true;
         }
-        #endregion
 
         #region Private methods
         /// <summary>
