@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Tekla.Structures;
+using Tekla.Structures.Datatype;
 using Tekla.Structures.Geometry3d;
 using Tekla.Structures.Model;
 using Tekla.Structures.Model.Operations;
@@ -26,6 +27,8 @@ namespace MB_CutObject.Models
         public double height;
         [StructuresField("width")]
         public double width;
+        [StructuresField("width1")]
+        public double width1;
         [StructuresField("radius")]
         public double radius;
         [StructuresField("offsetH")]
@@ -51,6 +54,7 @@ namespace MB_CutObject.Models
         //
         private double _Height = 0.0;
         private double _Width = 0.0;
+        private double _Width1 = 0.0;
         private double _Radius = 0.0;
         private double _OffsetH = 0.0;
         private double _OffsetL = 0.0;
@@ -130,19 +134,21 @@ namespace MB_CutObject.Models
                 switch (_TypeCut)
                 {
                     case 0:
-                        ContourPoint point1 = new ContourPoint(new TSG.Point(0 - _OffsetL, 0 - _OffsetH, centerpart), null);
-                        ContourPoint point2 = new ContourPoint(new TSG.Point(0 - _OffsetL, _Height, centerpart), null);
-                        ContourPoint point3 = new ContourPoint(new TSG.Point(_Width, _Height, centerpart), new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
-                        ContourPoint point4 = new ContourPoint(new TSG.Point(_Width, 0 - _OffsetH, centerpart), null);
-                        booleanCP.AddContourPoint(point1);
-                        booleanCP.AddContourPoint(point2);
-                        booleanCP.AddContourPoint(point3);
-                        booleanCP.AddContourPoint(point4);
+                        AddContourPoint(0 - _OffsetL, 0 - _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(0 - _OffsetL, _Height, centerpart, booleanCP, null);
+                        AddContourPoint(_Width, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        AddContourPoint(_Width, - _OffsetH, centerpart, booleanCP, null);
                         break;
-                    default:
+                        case 1:
+                        AddContourPoint(0 + _Width + _Radius, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        AddContourPoint(0 + _Width - _Width1, _Height, centerpart, booleanCP, null);
+                        AddContourPoint(0 + _Width - _Width1, 0 - _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(0 - _OffsetL, 0 - _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(0 - _OffsetL, _Height + 2 * _Radius, centerpart, booleanCP, null);
+                        AddContourPoint(_Width + _Radius, _Height + 2* _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
                         break;
                 }
-
+                //Для перемещения выреза по центру детали
                 selectedpoint1.Z = centerpart;
                 CoordinateSystem startCS = new CoordinateSystem(
                     new TSG.Point(0, 0, centerpart),
@@ -184,6 +190,13 @@ namespace MB_CutObject.Models
                 MessageBox.Show(Exc.ToString());
             }
             return true;
+            
+            //Добавление контурных точек в контурную пластину
+            void AddContourPoint(double x, double y, double z, ContourPlate cp, Chamfer chamfer)
+            {
+                ContourPoint point = new ContourPoint(new TSG.Point(x, y, z), chamfer);
+                cp.AddContourPoint(point);
+            }
         }
 
         #region Private methods
@@ -194,6 +207,7 @@ namespace MB_CutObject.Models
         {
             _Height = Data.height;
             _Width = Data.width;
+            _Width1 = Data.width1;
             _Radius = Data.radius;
             _OffsetH = Data.offsetH;
             _OffsetL = Data.offsetL;
@@ -205,6 +219,8 @@ namespace MB_CutObject.Models
                 _Height = 50;
             if (IsDefaultValue(_Width))
                 _Width = 50;
+            if (IsDefaultValue(_Width1))
+                _Width = 30;
             if (IsDefaultValue(_Radius))
                 _Radius = 12.5;
             if (IsDefaultValue(_OffsetH))
