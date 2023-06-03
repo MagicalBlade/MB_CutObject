@@ -115,7 +115,10 @@
                                 <TextBlock Text="OL" Canvas.Left="5" Canvas.Top="20" VerticalAlignment="Center"/>
                                 <TextBlock Text="OH" Canvas.Left="102" Canvas.Top="131" VerticalAlignment="Center"/>
                             </Canvas>
+                            <Canvas  Width="135" Height="160">
+                                <Path Data="M 65,20 a 50,50 0 0 1 0,100 l -20,0 0,10 80,0 0,-130 -100,0 0,20 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
 
+                            </Canvas>
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -133,6 +136,11 @@
                         <Label x:Name="l_Height" Content="H" Width="35"/>
                         <UIControls:WpfFilterCheckBox AttributeName="height"/>
                         <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}" Height="25" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="l_Height1" Content="H1" Width="35"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="height1"/>
+                        <TextBox x:Name="tb_Height1" Text="{Binding Height1, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label x:Name="l_Width" Content="L" Width="35"/>

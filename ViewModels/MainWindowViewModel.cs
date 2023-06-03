@@ -14,6 +14,7 @@ namespace MB_CutObject.ViewModels
     {
         #region Fields
         private double height = 0.0;
+        private double height1 = 0.0;
         private double width = 0.0;
         private double width1 = 0.0;
         private double radius = 0.0;
@@ -30,6 +31,12 @@ namespace MB_CutObject.ViewModels
         {
             get { return height; }
             set { height = value; OnPropertyChanged("Height"); }
+        }
+        [StructuresDialog("height1", typeof(TD.Double))]
+        public double Height1
+        {
+            get { return height1; }
+            set { height1 = value; OnPropertyChanged("Height1"); }
         }
         [StructuresDialog("width", typeof(TD.Double))]
         public double Width

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -25,6 +26,8 @@ namespace MB_CutObject.Models
         //
         [StructuresField("height")]
         public double height;
+        [StructuresField("height1")]
+        public double height1;
         [StructuresField("width")]
         public double width;
         [StructuresField("width1")]
@@ -53,6 +56,7 @@ namespace MB_CutObject.Models
         // Define variables for the field values.
         //
         private double _Height = 0.0;
+        private double _Height1 = 0.0;
         private double _Width = 0.0;
         private double _Width1 = 0.0;
         private double _Radius = 0.0;
@@ -139,13 +143,28 @@ namespace MB_CutObject.Models
                         AddContourPoint(_Width, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
                         AddContourPoint(_Width, - _OffsetH, centerpart, booleanCP, null);
                         break;
-                        case 1:
+                    case 1:
                         AddContourPoint(0 + _Width + _Radius, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
                         AddContourPoint(0 + _Width - _Width1, _Height, centerpart, booleanCP, null);
                         AddContourPoint(0 + _Width - _Width1, 0 - _OffsetH, centerpart, booleanCP, null);
                         AddContourPoint(0 - _OffsetL, 0 - _OffsetH, centerpart, booleanCP, null);
                         AddContourPoint(0 - _OffsetL, _Height + 2 * _Radius, centerpart, booleanCP, null);
                         AddContourPoint(_Width + _Radius, _Height + 2* _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        break;
+                    case 2:
+                        //Подготовка данных для получения точки касательной к окружности
+                        double hyp = Math.Sqrt(Math.Pow(_Width + _Width1, 2) + Math.Pow(_Height + _Height1, 2));
+                        double angle1 = Math.Acos(_Radius/hyp);
+                        double angle2 = Math.Acos((_Height + _Height1)/ hyp);
+                        double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
+                        double hkat = _Radius * Math.Cos(angle3);
+                        double vkat = _Radius * Math.Sin(angle3);
+                        AddContourPoint(0 - _Width - _Width1 / 2, 0, centerpart, booleanCP, null);
+                        AddContourPoint(0 - hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
+                        AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                        AddContourPoint(hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
+                        AddContourPoint(_Width + _Width1 / 2, 0, centerpart, booleanCP, null);
+
                         break;
                 }
                 //Для перемещения выреза по центру детали
@@ -217,6 +236,8 @@ namespace MB_CutObject.Models
 
             if (IsDefaultValue(_Height))
                 _Height = 50;
+            if (IsDefaultValue(_Height1))
+                _Height = 0;
             if (IsDefaultValue(_Width))
                 _Width = 50;
             if (IsDefaultValue(_Width1))
