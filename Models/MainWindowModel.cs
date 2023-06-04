@@ -153,17 +153,20 @@ namespace MB_CutObject.Models
                         break;
                     case 2:
                         //Подготовка данных для получения точки касательной к окружности
-                        double hyp = Math.Sqrt(Math.Pow(_Width + _Width1, 2) + Math.Pow(_Height + _Height1, 2));
+                        double hyp = Math.Sqrt(Math.Pow(_Width + _Width1 / 2, 2) + Math.Pow(_Height + _Height1, 2));
                         double angle1 = Math.Acos(_Radius/hyp);
                         double angle2 = Math.Acos((_Height + _Height1)/ hyp);
                         double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
                         double hkat = _Radius * Math.Cos(angle3);
                         double vkat = _Radius * Math.Sin(angle3);
-                        AddContourPoint(0 - _Width - _Width1 / 2, 0, centerpart, booleanCP, null);
+
+                        double offsetX = _OffsetH * Math.Tan(angle3);
+
+                        AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
                         AddContourPoint(0 - hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
                         AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
                         AddContourPoint(hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
-                        AddContourPoint(_Width + _Width1 / 2, 0, centerpart, booleanCP, null);
+                        AddContourPoint(_Width + _Width1 / 2 + offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
 
                         break;
                 }
@@ -225,6 +228,7 @@ namespace MB_CutObject.Models
         private void GetValuesFromDialog()
         {
             _Height = Data.height;
+            _Height1 = Data.height1;
             _Width = Data.width;
             _Width1 = Data.width1;
             _Radius = Data.radius;
