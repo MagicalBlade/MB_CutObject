@@ -159,7 +159,7 @@ namespace MB_CutObject.Models
                         double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
                         double hkat = _Radius * Math.Cos(angle3);
                         double vkat = _Radius * Math.Sin(angle3);
-
+                        //Координвтв Х для удлинения выреза
                         double offsetX = _OffsetH * Math.Tan(angle3);
 
                         AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, 0 - _OffsetH, centerpart, booleanCP, null);

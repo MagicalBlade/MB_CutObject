@@ -116,7 +116,14 @@
                                 <TextBlock Text="OH" Canvas.Left="102" Canvas.Top="131" VerticalAlignment="Center"/>
                             </Canvas>
                             <Canvas  Width="135" Height="160">
-                                <Path Data="M 65,20 a 50,50 0 0 1 0,100 l -20,0 0,10 80,0 0,-130 -100,0 0,20 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
+                                <Path Data="M 47.5,35 a 15,15 0 0 1 30,0 l 17.5,85 10,0 0,-120 -85,0 0,120 10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
+                                <Path Data="M 57.5,50 l 10,0 0,70 -10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
+
+                                <Path Data="M 67.5,50 l60,0" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 67.5,120 l60,0" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 35,120 l0,10" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 30,115 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+                                <Path Data="M 30,135 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
 
                             </Canvas>
                         </ComboBox>
