@@ -121,10 +121,38 @@
 
                                 <Path Data="M 67.5,50 l60,0" StrokeThickness="0.5" Stroke="Black"/>
                                 <Path Data="M 67.5,120 l60,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 35,120 l0,10" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 30,115 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 30,135 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+                                <Path Data="M 120,55 l0,65" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,115 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+                                <Path Data="M 115,55 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
 
+                                <Path Data="M 62.5,35 l65,0" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 120,35 l0,15" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,30 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+
+                                <Path Data="M 62.5,35 l25,-25" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 73.5,24 l8,0 -8,-8 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+
+                                <Path Data="M 127.5,135 l-25,0" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 120,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,140 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+
+                                <Path Data="M 30,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 57.5,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 67.5,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 95,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 30,130 l65,0" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 30,130 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+                                <Path Data="M 57.5,130 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+                                <Path Data="M 67.5,130 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+                                <Path Data="M 95,130 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
+
+                                <TextBlock Text="H" Canvas.Left="108" Canvas.Top="75"/>
+                                <TextBlock Text="H1" Canvas.Left="105" Canvas.Top="34"/>
+                                <TextBlock Text="L" Canvas.Left="42" Canvas.Top="132"/>
+                                <TextBlock Text="L1" Canvas.Left="57" Canvas.Top="132"/>
+                                <TextBlock Text="L" Canvas.Left="78" Canvas.Top="132"/>
+                                <TextBlock Text="R" Canvas.Left="73" Canvas.Top="0"/>
+                                <TextBlock Text="OH" Canvas.Left="100" Canvas.Top="120"/>
                             </Canvas>
                         </ComboBox>
                     </StackPanel>
@@ -176,7 +204,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-
+           
         </Grid>
         <UIControls:WpfSaveLoad Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
         <UIControls:WpfOkApplyModifyGetOnOffCancel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ApplyClicked="WPFOkApplyModifyGetOnOffCancel_ApplyClicked" CancelClicked="WPFOkApplyModifyGetOnOffCancel_CancelClicked" GetClicked="WPFOkApplyModifyGetOnOffCancel_GetClicked" OkClicked="WPFOkApplyModifyGetOnOffCancel_OkClicked" OnOffClicked="WPFOkApplyModifyGetOnOffCancel_OnOffClicked" ModifyClicked="WPFOkApplyModifyGetOnOffCancel_ModifyClicked"/>
