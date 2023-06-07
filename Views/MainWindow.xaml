@@ -154,6 +154,9 @@
                                 <TextBlock Text="R" Canvas.Left="73" Canvas.Top="0"/>
                                 <TextBlock Text="OH" Canvas.Left="100" Canvas.Top="120"/>
                             </Canvas>
+                            <Canvas  Width="135" Height="160">
+                                <Path Data="M 47.5,35 a 15,15 0 0 1 30,0 l 17.5,85 10,0 0,-120 -85,0 0,120 10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
+                            </Canvas>
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -178,6 +181,11 @@
                         <TextBox x:Name="tb_Height1" Text="{Binding Height1, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
+                        <Label x:Name="l_Height2" Content="H2" Width="35"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="height2"/>
+                        <TextBox x:Name="tb_Height2" Text="{Binding Height2, Mode=TwoWay}" Height="25" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
                         <Label x:Name="l_Width" Content="L" Width="35"/>
                         <UIControls:WpfFilterCheckBox AttributeName="width"/>
                         <TextBox x:Name="tb_Width" Text="{Binding Width, Mode=TwoWay}" Height="25" Width="100"/>
@@ -186,6 +194,16 @@
                         <Label x:Name="l_Width1" Content="L1" Width="35"/>
                         <UIControls:WpfFilterCheckBox AttributeName="width1"/>
                         <TextBox x:Name="tb_Width1" Text="{Binding Width1, Mode=TwoWay}" Height="25" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="l_Width2" Content="L2" Width="35"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="width2"/>
+                        <TextBox x:Name="tb_Width2" Text="{Binding Width2, Mode=TwoWay}" Height="25" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="l_Width3" Content="L3" Width="35"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="width3"/>
+                        <TextBox x:Name="tb_Width3" Text="{Binding Width3, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label x:Name="l_Radius" Content="R" Width="35"/>

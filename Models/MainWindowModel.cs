@@ -28,10 +28,16 @@ namespace MB_CutObject.Models
         public double height;
         [StructuresField("height1")]
         public double height1;
+        [StructuresField("height2")]
+        public double height2;
         [StructuresField("width")]
         public double width;
         [StructuresField("width1")]
         public double width1;
+        [StructuresField("width2")]
+        public double width2;
+        [StructuresField("width3")]
+        public double width3;
         [StructuresField("radius")]
         public double radius;
         [StructuresField("offsetH")]
@@ -57,8 +63,11 @@ namespace MB_CutObject.Models
         //
         private double _Height = 0.0;
         private double _Height1 = 0.0;
+        private double _Height2 = 0.0;
         private double _Width = 0.0;
         private double _Width1 = 0.0;
+        private double _Width2 = 0.0;
+        private double _Width3 = 0.0;
         private double _Radius = 0.0;
         private double _OffsetH = 0.0;
         private double _OffsetL = 0.0;
@@ -167,6 +176,14 @@ namespace MB_CutObject.Models
                         AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
                         AddContourPoint(hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
                         AddContourPoint(_Width + _Width1 / 2 + offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
+                        break;
+                    case 3:
+                        //Подготовка данных для получения точки касательной к окружности
+                        //Подготовка данных для получения точки смещения от продольного ребра
+                        double  = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow(_Width2, 2));
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, 0 + _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _OffsetH, centerpart, booleanCP, null);
 
                         break;
                 }
@@ -229,8 +246,11 @@ namespace MB_CutObject.Models
         {
             _Height = Data.height;
             _Height1 = Data.height1;
+            _Height2 = Data.height2;
             _Width = Data.width;
             _Width1 = Data.width1;
+            _Width2 = Data.width2;
+            _Width3 = Data.width3;
             _Radius = Data.radius;
             _OffsetH = Data.offsetH;
             _OffsetL = Data.offsetL;
@@ -241,11 +261,17 @@ namespace MB_CutObject.Models
             if (IsDefaultValue(_Height))
                 _Height = 50;
             if (IsDefaultValue(_Height1))
-                _Height = 0;
+                _Height1 = 0;
+            if (IsDefaultValue(_Height2))
+                _Height2 = 50;
             if (IsDefaultValue(_Width))
                 _Width = 50;
             if (IsDefaultValue(_Width1))
-                _Width = 30;
+                _Width1 = 30;
+            if (IsDefaultValue(_Width2))
+                _Width2 = 50;
+            if (IsDefaultValue(_Width3))
+                _Width3 = 50;
             if (IsDefaultValue(_Radius))
                 _Radius = 12.5;
             if (IsDefaultValue(_OffsetH))
