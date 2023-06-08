@@ -168,7 +168,7 @@ namespace MB_CutObject.Models
                         double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
                         double hkat = _Radius * Math.Cos(angle3);
                         double vkat = _Radius * Math.Sin(angle3);
-                        //Координвтв Х для удлинения выреза
+                        //Координата Х для удлинения выреза
                         double offsetX = _OffsetH * Math.Tan(angle3);
 
                         AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
@@ -179,11 +179,23 @@ namespace MB_CutObject.Models
                         break;
                     case 3:
                         //Подготовка данных для получения точки касательной к окружности
-                        //Подготовка данных для получения точки смещения от продольного ребра
-                        double  = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow(_Width2, 2));
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, 0 + _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _OffsetH, centerpart, booleanCP, null);
+                        double type3hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width3, 2) + Math.Pow(_Height + _Height1, 2));
+                        double type3angle1 = Math.Acos(_Radius / type3hyp);
+                        double type3angle2 = Math.Acos((_Height + _Height1) / type3hyp);
+                        double type3angle3 = (type3angle1 + type3angle2) - 90 * Math.PI / 180;
+                        double type3hkat = _Radius * Math.Cos(type3angle3);
+                        double type3vkat = _Radius * Math.Sin(type3angle3);
+                        //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                        double type3vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
+                        //Координата Х для удлинения выреза
+                        double type3offsetX = _OffsetH * Math.Tan(type3angle3);
+
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - type3vkat1), centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 - _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                        AddContourPoint(_Width1 / 2 - _Width3 - type3hkat, 0 - (_Height + _Height1 + type3vkat), centerpart, booleanCP, null);
+                        AddContourPoint(0 - _Width - _Width1 / 2 - type3offsetX, _OffsetH, centerpart, booleanCP, null);
 
                         break;
                 }
