@@ -207,6 +207,10 @@
                                 <TextBlock Text="R" Canvas.Left="83" Canvas.Top="110"/>
                                 <TextBlock Text="OH" Canvas.Left="120" Canvas.Top="11"/>
                             </Canvas>
+                            <Canvas  Width="135" Height="160">
+                                <Path Data="M 51,109 a 1,1 0 0 0 23,-15.5 l 0,-53 10,-10 25,0 0,120 -82,0 0,-120 10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
+
+                            </Canvas>
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">

@@ -196,7 +196,27 @@ namespace MB_CutObject.Models
                         AddContourPoint(_Width1 / 2 - _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
                         AddContourPoint(_Width1 / 2 - _Width3 - type3hkat, 0 - (_Height + _Height1 + type3vkat), centerpart, booleanCP, null);
                         AddContourPoint(0 - _Width - _Width1 / 2 - type3offsetX, _OffsetH, centerpart, booleanCP, null);
+                        break;
+                    case 4:
+                        //Подготовка данных для получения точки касательной к окружности
+                        double type4hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width3, 2) + Math.Pow(_Height + _Height1, 2));
+                        double type4angle1 = Math.Acos(_Radius / type4hyp);
+                        double type4angle2 = Math.Acos((_Height + _Height1) / type4hyp);
+                        double type4angle3 = (type4angle1 + type4angle2) - 90 * Math.PI / 180;
+                        double type4hkat = _Radius * Math.Cos(type4angle3);
+                        double type4vkat = _Radius * Math.Sin(type4angle3);
+                        //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                        double type4vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
+                        //Координата Х для удлинения выреза
+                        double type4offsetX = _OffsetH * Math.Tan(type4angle3);
 
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, 0 - _Height2, centerpart, booleanCP, new Chamfer(_Height2, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - type4vkat1), centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 - _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                        AddContourPoint(_Width1 / 2 - _Width3 - type4hkat, 0 - (_Height + _Height1 + type4vkat), centerpart, booleanCP, null);
+                        AddContourPoint(0 - _Width - _Width1 / 2 - type4offsetX, _OffsetH, centerpart, booleanCP, null);
                         break;
                 }
                 //Для перемещения выреза по центру детали
