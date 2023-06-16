@@ -208,7 +208,7 @@
                                 <TextBlock Text="OH" Canvas.Left="120" Canvas.Top="11"/>
                             </Canvas>
                             <Canvas  Width="135" Height="160">
-                                <Path Data="M 51,109 a 1,1 0 0 0 23,-15.5 l 0,-53 10,-10 25,0 0,120 -82,0 0,-120 10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
+                                <Path Data="M 0,0 0,-12.1228820619188 11.1368673901425,-12.1228820619188 11.1368673901425,-3.9266052145612 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
 
                             </Canvas>
                             <Canvas  Width="135" Height="160">
@@ -286,6 +286,8 @@
                 </StackPanel>
             </StackPanel>
             <Canvas>
+                
+
 
             </Canvas>
         </Grid>
