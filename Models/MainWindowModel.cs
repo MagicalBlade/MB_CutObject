@@ -38,6 +38,8 @@ namespace MB_CutObject.Models
         public double width2;
         [StructuresField("width3")]
         public double width3;
+        [StructuresField("width4")]
+        public double width4;
         [StructuresField("radius")]
         public double radius;
         [StructuresField("offsetH")]
@@ -68,6 +70,7 @@ namespace MB_CutObject.Models
         private double _Width1 = 0.0;
         private double _Width2 = 0.0;
         private double _Width3 = 0.0;
+        private double _Width4 = 0.0;
         private double _Radius = 0.0;
         private double _OffsetH = 0.0;
         private double _OffsetL = 0.0;
@@ -218,6 +221,33 @@ namespace MB_CutObject.Models
                         AddContourPoint(_Width1 / 2 - _Width3 - type4hkat, 0 - (_Height + _Height1 + type4vkat), centerpart, booleanCP, null);
                         AddContourPoint(0 - _Width - _Width1 / 2 - type4offsetX, _OffsetH, centerpart, booleanCP, null);
                         break;
+                    case 5:
+                        //Подготовка данных для получения точки касательной к окружности
+                        double type5hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width4, 2) + Math.Pow(_Height + _Height1, 2));
+                        double type5angle1 = Math.Acos(_Radius / type5hyp);
+                        double type5angle2 = Math.Acos((_Height + _Height1) / type5hyp);
+                        double type5angle3 = (type5angle1 + type5angle2) - 90 * Math.PI / 180;
+                        double type5hkat = _Radius * Math.Cos(type5angle3);
+                        double type5vkat = _Radius * Math.Sin(type5angle3);
+                        //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                        double type5vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
+                        //Координата Х для удлинения выреза
+                        double type5offsetX = _OffsetH * Math.Tan(type5angle3);
+
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, _OffsetH, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, 0 - _Height2, centerpart, booleanCP, new Chamfer(_Height2, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, null);
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+
+                        AddContourPoint(_Width1 / 2 + _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, null);
+
+                        double type5hkat1 =  (_Radius - type5vkat) * Math.Tan(type5angle3);
+
+                        AddContourPoint(_Width1 / 2 - _Width4 - type5hkat + type5hkat1, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        AddContourPoint(0 - _Width - _Width1 / 2 - type5offsetX, _OffsetH, centerpart, booleanCP, null);
+                        break;
                 }
                 //Для перемещения выреза по центру детали
                 selectedpoint1.Z = centerpart;
@@ -283,6 +313,7 @@ namespace MB_CutObject.Models
             _Width1 = Data.width1;
             _Width2 = Data.width2;
             _Width3 = Data.width3;
+            _Width4 = Data.width4;
             _Radius = Data.radius;
             _OffsetH = Data.offsetH;
             _OffsetL = Data.offsetL;
@@ -304,6 +335,8 @@ namespace MB_CutObject.Models
                 _Width2 = 50;
             if (IsDefaultValue(_Width3))
                 _Width3 = 50;
+            if (IsDefaultValue(_Width4))
+                _Width4 = 50;
             if (IsDefaultValue(_Radius))
                 _Radius = 12.5;
             if (IsDefaultValue(_OffsetH))

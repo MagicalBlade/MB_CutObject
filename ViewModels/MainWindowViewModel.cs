@@ -20,6 +20,7 @@ namespace MB_CutObject.ViewModels
         private double width1 = 0.0;
         private double width2 = 0.0;
         private double width3 = 0.0;
+        private double width4 = 0.0;
         private double radius = 0.0;
         private double offsetH = 0.0;
         private double offsetL = 0.0;
@@ -70,6 +71,12 @@ namespace MB_CutObject.ViewModels
         {
             get { return width3; }
             set { width3 = value; OnPropertyChanged("Width3"); }
+        }
+        [StructuresDialog("width4", typeof(TD.Double))]
+        public double Width4
+        {
+            get { return width4; }
+            set { width4 = value; OnPropertyChanged("Width4"); }
         }
         [StructuresDialog("radius", typeof(TD.Double))]
         public double Radius

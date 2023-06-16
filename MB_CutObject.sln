@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB_CutObject", "MB_CutObject.csproj", "{0D015450-83E7-4F20-B552-3729FDC8CBF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DxfToWpfSketch", "..\DxfToWpfSketch\DxfToWpfSketch.csproj", "{DE0C13AF-D6B5-405A-9F08-E1FB24D65159}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0D015450-83E7-4F20-B552-3729FDC8CBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D015450-83E7-4F20-B552-3729FDC8CBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D015450-83E7-4F20-B552-3729FDC8CBF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE0C13AF-D6B5-405A-9F08-E1FB24D65159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE0C13AF-D6B5-405A-9F08-E1FB24D65159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE0C13AF-D6B5-405A-9F08-E1FB24D65159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE0C13AF-D6B5-405A-9F08-E1FB24D65159}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

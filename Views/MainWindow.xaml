@@ -211,6 +211,10 @@
                                 <Path Data="M 51,109 a 1,1 0 0 0 23,-15.5 l 0,-53 10,-10 25,0 0,120 -82,0 0,-120 10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
 
                             </Canvas>
+                            <Canvas  Width="135" Height="160">
+                                <TextBlock Text="Test"/>
+
+                            </Canvas>
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -260,6 +264,11 @@
                         <TextBox x:Name="tb_Width3" Text="{Binding Width3, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
+                        <Label x:Name="l_Width4" Content="L4" Width="35"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="width4"/>
+                        <TextBox x:Name="tb_Width4" Text="{Binding Width4, Mode=TwoWay}" Height="25" Width="100"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
                         <Label x:Name="l_Radius" Content="R" Width="35"/>
                         <UIControls:WpfFilterCheckBox AttributeName="radius"/>
                         <TextBox x:Name="tb_Radius" Text="{Binding Radius, Mode=TwoWay}" Height="25" Width="100"/>
@@ -276,7 +285,9 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-           
+            <Canvas>
+
+            </Canvas>
         </Grid>
         <UIControls:WpfSaveLoad Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
         <UIControls:WpfOkApplyModifyGetOnOffCancel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ApplyClicked="WPFOkApplyModifyGetOnOffCancel_ApplyClicked" CancelClicked="WPFOkApplyModifyGetOnOffCancel_CancelClicked" GetClicked="WPFOkApplyModifyGetOnOffCancel_GetClicked" OkClicked="WPFOkApplyModifyGetOnOffCancel_OkClicked" OnOffClicked="WPFOkApplyModifyGetOnOffCancel_OnOffClicked" ModifyClicked="WPFOkApplyModifyGetOnOffCancel_ModifyClicked"/>
