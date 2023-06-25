@@ -1,0 +1,13 @@
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\bin\Debug\MB_CutObject.dll
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\bin\Debug\MB_CutObject.pdb
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject.csproj.AssemblyReference.cache
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\Views\MainWindow.g.cs
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject_MarkupCompile.cache
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject_MarkupCompile.lref
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\Views\MainWindow.baml
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject.g.resources
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject.Properties.Resources.resources
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject.csproj.GenerateResource.cache
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject.csproj.CoreCompileInputs.cache
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject.dll
+E:\Programming\Projects\Tekla Structures libraries\MB_CutObject\ObjDir\2019\MB_CutObject\MB_CutObject.pdb
