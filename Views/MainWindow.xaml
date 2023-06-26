@@ -345,8 +345,8 @@
 
             </StackPanel>
 
-            <Image Width="180" Source="/MB_CutObject;component/Выкружка №5.png" />
             <Canvas  Width="135" Height="160">
+
 
 
 
