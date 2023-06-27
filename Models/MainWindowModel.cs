@@ -150,103 +150,143 @@ namespace MB_CutObject.Models
                 switch (_TypeCut)
                 {
                     case 0:
-                        AddContourPoint(0 - _OffsetL, 0 - _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(0 - _OffsetL, _Height, centerpart, booleanCP, null);
-                        AddContourPoint(_Width, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
-                        AddContourPoint(_Width, - _OffsetH, centerpart, booleanCP, null);
+                        {
+                            AddContourPoint(0 - _OffsetL, 0 - _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(0 - _OffsetL, _Height, centerpart, booleanCP, null);
+                            AddContourPoint(_Width, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(_Width, -_OffsetH, centerpart, booleanCP, null);
+                        }
                         break;
                     case 1:
-                        AddContourPoint(0 + _Width + _Radius, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
-                        AddContourPoint(0 + _Width - _Width1, _Height, centerpart, booleanCP, null);
-                        AddContourPoint(0 + _Width - _Width1, 0 - _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(0 - _OffsetL, 0 - _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(0 - _OffsetL, _Height + 2 * _Radius, centerpart, booleanCP, null);
-                        AddContourPoint(_Width + _Radius, _Height + 2* _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        {
+                            AddContourPoint(0 + _Width + _Radius, _Height, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(0 + _Width - _Width1, _Height, centerpart, booleanCP, null);
+                            AddContourPoint(0 + _Width - _Width1, 0 - _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(0 - _OffsetL, 0 - _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(0 - _OffsetL, _Height + 2 * _Radius, centerpart, booleanCP, null);
+                            AddContourPoint(_Width + _Radius, _Height + 2 * _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                        }
                         break;
                     case 2:
-                        //Подготовка данных для получения точки касательной к окружности
-                        double hyp = Math.Sqrt(Math.Pow(_Width + _Width1 / 2, 2) + Math.Pow(_Height + _Height1, 2));
-                        double angle1 = Math.Acos(_Radius/hyp);
-                        double angle2 = Math.Acos((_Height + _Height1)/ hyp);
-                        double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
-                        double hkat = _Radius * Math.Cos(angle3);
-                        double vkat = _Radius * Math.Sin(angle3);
-                        //Координата Х для удлинения выреза
-                        double offsetX = _OffsetH * Math.Tan(angle3);
+                        {
+                            //Подготовка данных для получения точки касательной к окружности
+                            double hyp = Math.Sqrt(Math.Pow(_Width + _Width1 / 2, 2) + Math.Pow(_Height + _Height1, 2));
+                            double angle1 = Math.Acos(_Radius / hyp);
+                            double angle2 = Math.Acos((_Height + _Height1) / hyp);
+                            double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
+                            double hkat = _Radius * Math.Cos(angle3);
+                            double vkat = _Radius * Math.Sin(angle3);
+                            //Координата Х для удлинения выреза
+                            double offsetX = _OffsetH * Math.Tan(angle3);
 
-                        AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(0 - hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
-                        AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
-                        AddContourPoint(hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
-                        AddContourPoint(_Width + _Width1 / 2 + offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(0 - hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
+                            AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                            AddContourPoint(hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
+                            AddContourPoint(_Width + _Width1 / 2 + offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
+                        }
                         break;
                     case 3:
-                        //Подготовка данных для получения точки касательной к окружности
-                        double type3hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width3, 2) + Math.Pow(_Height + _Height1, 2));
-                        double type3angle1 = Math.Acos(_Radius / type3hyp);
-                        double type3angle2 = Math.Acos((_Height + _Height1) / type3hyp);
-                        double type3angle3 = (type3angle1 + type3angle2) - 90 * Math.PI / 180;
-                        double type3hkat = _Radius * Math.Cos(type3angle3);
-                        double type3vkat = _Radius * Math.Sin(type3angle3);
-                        //Подготовка данных для получения точки на окружности при смещении от продольного ребра
-                        double type3vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
-                        //Координата Х для удлинения выреза
-                        double type3offsetX = _OffsetH * Math.Tan(type3angle3);
+                        {
+                            //Подготовка данных для получения точки касательной к окружности
+                            double type3hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width3, 2) + Math.Pow(_Height + _Height1, 2));
+                            double type3angle1 = Math.Acos(_Radius / type3hyp);
+                            double type3angle2 = Math.Acos((_Height + _Height1) / type3hyp);
+                            double type3angle3 = (type3angle1 + type3angle2) - 90 * Math.PI / 180;
+                            double type3hkat = _Radius * Math.Cos(type3angle3);
+                            double type3vkat = _Radius * Math.Sin(type3angle3);
+                            //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                            double type3vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
+                            //Координата Х для удлинения выреза
+                            double type3offsetX = _OffsetH * Math.Tan(type3angle3);
 
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - type3vkat1), centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 - _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
-                        AddContourPoint(_Width1 / 2 - _Width3 - type3hkat, 0 - (_Height + _Height1 + type3vkat), centerpart, booleanCP, null);
-                        AddContourPoint(0 - _Width - _Width1 / 2 - type3offsetX, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - type3vkat1), centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 - _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                            AddContourPoint(_Width1 / 2 - _Width3 - type3hkat, 0 - (_Height + _Height1 + type3vkat), centerpart, booleanCP, null);
+                            AddContourPoint(0 - _Width - _Width1 / 2 - type3offsetX, _OffsetH, centerpart, booleanCP, null);
+                        }
                         break;
                     case 4:
-                        //Подготовка данных для получения точки касательной к окружности
-                        double type4hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width3, 2) + Math.Pow(_Height + _Height1, 2));
-                        double type4angle1 = Math.Acos(_Radius / type4hyp);
-                        double type4angle2 = Math.Acos((_Height + _Height1) / type4hyp);
-                        double type4angle3 = (type4angle1 + type4angle2) - 90 * Math.PI / 180;
-                        double type4hkat = _Radius * Math.Cos(type4angle3);
-                        double type4vkat = _Radius * Math.Sin(type4angle3);
-                        //Подготовка данных для получения точки на окружности при смещении от продольного ребра
-                        double type4vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
-                        //Координата Х для удлинения выреза
-                        double type4offsetX = _OffsetH * Math.Tan(type4angle3);
+                        {
+                            //Подготовка данных для получения точки касательной к окружности
+                            double type4hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width3, 2) + Math.Pow(_Height + _Height1, 2));
+                            double type4angle1 = Math.Acos(_Radius / type4hyp);
+                            double type4angle2 = Math.Acos((_Height + _Height1) / type4hyp);
+                            double type4angle3 = (type4angle1 + type4angle2) - 90 * Math.PI / 180;
+                            double type4hkat = _Radius * Math.Cos(type4angle3);
+                            double type4vkat = _Radius * Math.Sin(type4angle3);
+                            //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                            double type4vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
+                            //Координата Х для удлинения выреза
+                            double type4offsetX = _OffsetH * Math.Tan(type4angle3);
 
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, 0 - _Height2, centerpart, booleanCP, new Chamfer(_Height2, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - type4vkat1), centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 - _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
-                        AddContourPoint(_Width1 / 2 - _Width3 - type4hkat, 0 - (_Height + _Height1 + type4vkat), centerpart, booleanCP, null);
-                        AddContourPoint(0 - _Width - _Width1 / 2 - type4offsetX, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2, 0 - _Height2, centerpart, booleanCP, new Chamfer(_Height2, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - type4vkat1), centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 - _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                            AddContourPoint(_Width1 / 2 - _Width3 - type4hkat, 0 - (_Height + _Height1 + type4vkat), centerpart, booleanCP, null);
+                            AddContourPoint(0 - _Width - _Width1 / 2 - type4offsetX, _OffsetH, centerpart, booleanCP, null);
+                        }
                         break;
                     case 5:
-                        //Подготовка данных для получения точки касательной к окружности
-                        double type5hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width4, 2) + Math.Pow(_Height + _Height1, 2));
-                        double type5angle1 = Math.Acos(_Radius / type5hyp);
-                        double type5angle2 = Math.Acos((_Height + _Height1) / type5hyp);
-                        double type5angle3 = (type5angle1 + type5angle2) - 90 * Math.PI / 180;
-                        double type5hkat = _Radius * Math.Cos(type5angle3);
-                        double type5vkat = _Radius * Math.Sin(type5angle3);
-                        //Подготовка данных для получения точки на окружности при смещении от продольного ребра
-                        double type5vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
-                        //Координата Х для удлинения выреза
-                        double type5offsetX = _OffsetH * Math.Tan(type5angle3);
+                        {
+                            //Подготовка данных для получения точки касательной к окружности
+                            double hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width4, 2) + Math.Pow(_Height + _Height1, 2));
+                            double angle1 = Math.Acos(_Radius / hyp);
+                            double angle2 = Math.Acos((_Height + _Height1) / hyp);
+                            double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
+                            double hkat = _Radius * Math.Cos(angle3);
+                            double vkat = _Radius * Math.Sin(angle3);
+                            //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                            double vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
+                            //Координата Х для удлинения выреза
+                            double offsetX = _OffsetH * Math.Tan(angle3);
 
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, _OffsetH, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Height2, 0 - _Height2, centerpart, booleanCP, new Chamfer(_Height2, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, null);
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
-                        AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
 
-                        AddContourPoint(_Width1 / 2 + _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, null);
 
-                        double type5hkat1 =  (_Radius - type5vkat) * Math.Tan(type5angle3);
+                            double hkat1 = (_Radius - vkat) * Math.Tan(angle3);
 
-                        AddContourPoint(_Width1 / 2 - _Width4 - type5hkat + type5hkat1, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
-                        AddContourPoint(0 - _Width - _Width1 / 2 - type5offsetX, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 - _Width4 - hkat + hkat1, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, _OffsetH, centerpart, booleanCP, null);
+                        }
+                        break;
+                    case 6:
+                        {
+                            //Подготовка данных для получения точки касательной к окружности
+                            double type5hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width4, 2) + Math.Pow(_Height + _Height1, 2));
+                            double type5angle1 = Math.Acos(_Radius / type5hyp);
+                            double type5angle2 = Math.Acos((_Height + _Height1) / type5hyp);
+                            double type5angle3 = (type5angle1 + type5angle2) - 90 * Math.PI / 180;
+                            double type5hkat = _Radius * Math.Cos(type5angle3);
+                            double type5vkat = _Radius * Math.Sin(type5angle3);
+                            //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                            double type5vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width2 + _Width3), 2));
+                            //Координата Х для удлинения выреза
+                            double type5offsetX = _OffsetH * Math.Tan(type5angle3);
+
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2, 0 - _Height2, centerpart, booleanCP, new Chamfer(_Height2, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - _Height2, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 - _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Width3 + _Radius, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+
+                            AddContourPoint(_Width1 / 2 + _Width3, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, null);
+
+                            double type5hkat1 = (_Radius - type5vkat) * Math.Tan(type5angle3);
+
+                            AddContourPoint(_Width1 / 2 - _Width4 - type5hkat + type5hkat1, 0 - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ROUNDING));
+                            AddContourPoint(0 - _Width - _Width1 / 2 - type5offsetX, _OffsetH, centerpart, booleanCP, null);
+                        }
                         break;
                 }
                 //Для перемещения выреза по центру детали
