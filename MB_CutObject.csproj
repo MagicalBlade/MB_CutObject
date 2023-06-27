@@ -102,6 +102,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Supporting\Выкружка №2.frw" />
+    <None Include="Supporting\Выкружка №3.frw" />
+    <None Include="Supporting\Выкружка №4.frw" />
+    <None Include="Supporting\Выкружка №5.frw" />
+    <None Include="Supporting\Выкружка №6.frw" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
