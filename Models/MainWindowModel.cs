@@ -288,6 +288,27 @@ namespace MB_CutObject.Models
                             AddContourPoint(0 - _Width - _Width1 / 2 - type5offsetX, _OffsetH, centerpart, booleanCP, null);
                         }
                         break;
+                    case 7:
+                        {
+                            //Подготовка данных для получения точки касательной к окружности
+                            double hyp = Math.Sqrt(Math.Pow(_Width + _Width1 - _Width4, 2) + Math.Pow(_Height + _Height1, 2));
+                            double angle1 = Math.Acos(_Radius / hyp);
+                            double angle2 = Math.Acos((_Height + _Height1) / hyp);
+                            double angle3 = (angle1 + angle2) - 90 * Math.PI / 180;
+                            double hkat = _Radius * Math.Cos(angle3);
+                            double vkat = _Radius * Math.Sin(angle3);
+                            //Подготовка данных для получения точки на окружности при смещении от продольного ребра
+                            double vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width1 / 2 + _Width2), 2));
+
+                            AddContourPoint( - _Width1 / 2 - _Width2 - _Height2 - _OffsetH, - _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint( - _Width1 / 2 - _Width2, _Height2, centerpart, booleanCP, null);
+                            AddContourPoint( - _Width1 / 2 - _Width2, _Height + _Height1 - vkat1, centerpart, booleanCP, null);
+                            AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                            AddContourPoint(_Width1 / 2 + _Width2, _Height + _Height1 - vkat1, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, _Height2, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, -_OffsetH, centerpart, booleanCP, null);
+                        }
+                        break;
                 }
                 //Для перемещения выреза по центру детали
                 selectedpoint1.Z = centerpart;
