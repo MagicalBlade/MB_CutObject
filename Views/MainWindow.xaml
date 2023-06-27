@@ -34,8 +34,268 @@
             <Setter Property="Margin" Value="0,5"/>
         </Style>
         <Style TargetType="ScrollViewer">
-            <Setter Property="CanContentScroll" Value="True"/>
+            <Setter Property="CanContentScroll" Value="False"/>
         </Style>
+        <!--#region ScrollBar -->
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="#F0F0F0"/>
+        <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="#F0F0F0"/>
+        <SolidColorBrush x:Key="ScrollBar.Static.Glyph" Color="#606060"/>
+        <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#CDCDCD"/>
+        <SolidColorBrush x:Key="ScrollBar.MouseOver.Background" Color="#DADADA"/>
+        <SolidColorBrush x:Key="ScrollBar.MouseOver.Border" Color="#DADADA"/>
+        <SolidColorBrush x:Key="ScrollBar.MouseOver.Glyph" Color="#000000"/>
+        <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#A6A6A6"/>
+        <SolidColorBrush x:Key="ScrollBar.Pressed.Background" Color="#606060"/>
+        <SolidColorBrush x:Key="ScrollBar.Pressed.Border" Color="#606060"/>
+        <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#606060"/>
+        <SolidColorBrush x:Key="ScrollBar.Pressed.Glyph" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="ScrollBar.Disabled.Background" Color="#F0F0F0"/>
+        <SolidColorBrush x:Key="ScrollBar.Disabled.Border" Color="#F0F0F0"/>
+        <SolidColorBrush x:Key="ScrollBar.Disabled.Glyph" Color="#BFBFBF"/>
+        <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border x:Name="border" Background="{StaticResource ScrollBar.Static.Background}" BorderBrush="{StaticResource ScrollBar.Static.Border}" BorderThickness="1" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource ScrollBar.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ScrollBar.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource ScrollBar.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ScrollBar.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource ScrollBar.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ScrollBar.Disabled.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarThumbVertical" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle x:Name="rectangle" Fill="{StaticResource ScrollBar.Static.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.MouseOver.Thumb}"/>
+                            </Trigger>
+                            <Trigger Property="IsDragging" Value="true">
+                                <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.Pressed.Thumb}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarThumbHorizontal" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle x:Name="rectangle" Fill="{StaticResource ScrollBar.Static.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.MouseOver.Thumb}"/>
+                            </Trigger>
+                            <Trigger Property="IsDragging" Value="true">
+                                <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.Pressed.Thumb}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ScrollBar">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+            <Setter Property="Background" Value="{StaticResource ScrollBar.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ScrollBar.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1,0"/>
+            <Setter Property="Width" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+            <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid MinWidth="10" x:Name="Bg" SnapsToDevicePixels="true">
+                            <Grid.RowDefinitions>
+                                <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                <RowDefinition Height="0.00001*"/>
+                                <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                            </Grid.RowDefinitions>
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Row="1"/>
+                            <RepeatButton x:Name="PART_LineUpButton" Command="{x:Static ScrollBar.LineUpCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource ScrollBarButton}">
+                                <Path x:Name="ArrowTop" Data="M 0,4 C0,4 0,6 0,6 0,6 3.5,2.5 3.5,2.5 3.5,2.5 7,6 7,6 7,6 7,4 7,4 7,4 3.5,0.5 3.5,0.5 3.5,0.5 0,4 0,4 z" Fill="{StaticResource ScrollBar.Static.Glyph}" Margin="3,4,3,3" Stretch="Uniform"/>
+                            </RepeatButton>
+                            <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource ScrollBarThumbVertical}"/>
+                                </Track.Thumb>
+                            </Track>
+                            <RepeatButton x:Name="PART_LineDownButton" Command="{x:Static ScrollBar.LineDownCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="2" Style="{StaticResource ScrollBarButton}">
+                                <Path x:Name="ArrowBottom" Data="M 0,2.5 C0,2.5 0,0.5 0,0.5 0,0.5 3.5,4 3.5,4 3.5,4 7,0.5 7,0.5 7,0.5 7,2.5 7,2.5 7,2.5 3.5,6 3.5,6 3.5,6 0,2.5 0,2.5 z" Fill="{StaticResource ScrollBar.Static.Glyph}" Margin="3,4,3,3" Stretch="Uniform"/>
+                            </RepeatButton>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineDownButton}" Value="true"/>
+                                    <Condition Binding="{Binding IsPressed, ElementName=PART_LineDownButton}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Fill" TargetName="ArrowBottom" Value="{StaticResource ScrollBar.Pressed.Glyph}"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineUpButton}" Value="true"/>
+                                    <Condition Binding="{Binding IsPressed, ElementName=PART_LineUpButton}" Value="true"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Fill" TargetName="ArrowTop" Value="{StaticResource ScrollBar.Pressed.Glyph}"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineDownButton}" Value="true"/>
+                                    <Condition Binding="{Binding IsPressed, ElementName=PART_LineDownButton}" Value="false"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Fill" TargetName="ArrowBottom" Value="{StaticResource ScrollBar.MouseOver.Glyph}"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineUpButton}" Value="true"/>
+                                    <Condition Binding="{Binding IsPressed, ElementName=PART_LineUpButton}" Value="false"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Fill" TargetName="ArrowTop" Value="{StaticResource ScrollBar.MouseOver.Glyph}"/>
+                            </MultiDataTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" TargetName="ArrowTop" Value="{StaticResource ScrollBar.Disabled.Glyph}"/>
+                                <Setter Property="Fill" TargetName="ArrowBottom" Value="{StaticResource ScrollBar.Disabled.Glyph}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="MinWidth" Value="0"/>
+                    <Setter Property="Height" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                    <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                    <Setter Property="BorderThickness" Value="0,1"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}"/>
+                                        <ColumnDefinition Width="0.00001*"/>
+                                        <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="1"/>
+                                    <RepeatButton x:Name="PART_LineLeftButton" Command="{x:Static ScrollBar.LineLeftCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource ScrollBarButton}">
+                                        <Path x:Name="ArrowLeft" Data="M 3.18,7 C3.18,7 5,7 5,7 5,7 1.81,3.5 1.81,3.5 1.81,3.5 5,0 5,0 5,0 3.18,0 3.18,0 3.18,0 0,3.5 0,3.5 0,3.5 3.18,7 3.18,7 z" Fill="{StaticResource ScrollBar.Static.Glyph}" Margin="3" Stretch="Uniform"/>
+                                    </RepeatButton>
+                                    <Track x:Name="PART_Track" Grid.Column="1" IsEnabled="{TemplateBinding IsMouseOver}">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Style="{StaticResource ScrollBarThumbHorizontal}"/>
+                                        </Track.Thumb>
+                                    </Track>
+                                    <RepeatButton x:Name="PART_LineRightButton" Command="{x:Static ScrollBar.LineRightCommand}" Grid.Column="2" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource ScrollBarButton}">
+                                        <Path x:Name="ArrowRight" Data="M 1.81,7 C1.81,7 0,7 0,7 0,7 3.18,3.5 3.18,3.5 3.18,3.5 0,0 0,0 0,0 1.81,0 1.81,0 1.81,0 5,3.5 5,3.5 5,3.5 1.81,7 1.81,7 z" Fill="{StaticResource ScrollBar.Static.Glyph}" Margin="3" Stretch="Uniform"/>
+                                    </RepeatButton>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineRightButton}" Value="true"/>
+                                            <Condition Binding="{Binding IsPressed, ElementName=PART_LineRightButton}" Value="true"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Fill" TargetName="ArrowRight" Value="{StaticResource ScrollBar.Pressed.Glyph}"/>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineLeftButton}" Value="true"/>
+                                            <Condition Binding="{Binding IsPressed, ElementName=PART_LineLeftButton}" Value="true"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Fill" TargetName="ArrowLeft" Value="{StaticResource ScrollBar.Pressed.Glyph}"/>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineRightButton}" Value="true"/>
+                                            <Condition Binding="{Binding IsPressed, ElementName=PART_LineRightButton}" Value="false"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Fill" TargetName="ArrowRight" Value="{StaticResource ScrollBar.MouseOver.Glyph}"/>
+                                    </MultiDataTrigger>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=PART_LineLeftButton}" Value="true"/>
+                                            <Condition Binding="{Binding IsPressed, ElementName=PART_LineLeftButton}" Value="false"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Fill" TargetName="ArrowLeft" Value="{StaticResource ScrollBar.MouseOver.Glyph}"/>
+                                    </MultiDataTrigger>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter Property="Fill" TargetName="ArrowLeft" Value="{StaticResource ScrollBar.Disabled.Glyph}"/>
+                                        <Setter Property="Fill" TargetName="ArrowRight" Value="{StaticResource ScrollBar.Disabled.Glyph}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--#endregion-->
+
     </Window.Resources>
     
     <Grid>
@@ -49,8 +309,9 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <UIControls:WpfFilterCheckBox AttributeName="typeCut"/>
-                        <ComboBox x:Name="cb_typeCut" SelectedIndex="{Binding TypeCut}"  Width="250" Height="250" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                            <Canvas  Width="135" Height="160">
+                        <ComboBox x:Name="cb_typeCut" SelectedIndex="{Binding TypeCut}"  Width="260" Height="240" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                            <Canvas  Width="230" Height="230">
+                                <Rectangle Width="230" Height="230" StrokeThickness="1" Stroke="Black"/>
                                 <Path Data="M 20,40 l30,0 a 30,30 0 0 1 30,30 l 0,50 40,0 0,-120 -100,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
                                 <Path Data="M 3,40 l17,0" StrokeThickness="0.5" Stroke="Black"/>
                                 <Path Data="M 3,120 l97,0" StrokeThickness="0.5" Stroke="Black"/>
@@ -80,7 +341,7 @@
                                 <TextBlock Text="OL" Canvas.Left="3" Canvas.Top="0" VerticalAlignment="Center"/>
                                 <TextBlock Text="OH" Canvas.Left="102" Canvas.Top="121" VerticalAlignment="Center"/>
                             </Canvas>
-                            <Canvas  Width="135" Height="160">
+                            <Canvas  Width="230" Height="230">
                                 <Path Data="M 65,20 a 50,50 0 0 1 0,100 l -20,0 0,10 80,0 0,-130 -100,0 0,20 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
 
                                 <Path Data="M 30,120 l15,0" StrokeThickness="0.5" Stroke="Black"/>
@@ -119,7 +380,7 @@
                                 <TextBlock Text="OL" Canvas.Left="5" Canvas.Top="20" VerticalAlignment="Center"/>
                                 <TextBlock Text="OH" Canvas.Left="102" Canvas.Top="131" VerticalAlignment="Center"/>
                             </Canvas>
-                            <Canvas  Width="135" Height="160">
+                            <Canvas  Width="230" Height="230">
                                 <Path Data="M 47.5,35 a 15,15 0 0 1 30,0 l 17.5,85 10,0 0,-120 -85,0 0,120 10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
                                 <Path Data="M 57.5,50 l 10,0 0,70 -10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
 
@@ -158,121 +419,188 @@
                                 <TextBlock Text="R" Canvas.Left="73" Canvas.Top="0"/>
                                 <TextBlock Text="OH" Canvas.Left="100" Canvas.Top="120"/>
                             </Canvas>
-                            <Canvas  Width="135" Height="160">
-                                <Path Data="M 69.41498935084672,93.16928683581952 A 1,1 0 0 1 46.7129374199341,108.8327037031484L39.41498935084673,29.99999999999999 L28.01889125536739,29.99999999999999 L28.01889125536739,150.0 L97.62238098173077,150.0 L97.62238098173077,30.0 L79.41498935084674,30.0 L69.41498935084672,40.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.41498935084673,30.0 L54.41498935084673,100.0 L64.41498935084672,100.0 L64.41498935084672,30.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 108.4774091286094,26.00000000000002 L103.4774091286094,26.0 L105.9774091286094,30.00000000000001 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 108.4774091286094,23.59896046765371 L103.4774091286094,23.59896046765373 L105.9774091286094,19.59896046765372 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 23.51889125536738,33.99999999999999 L18.51889125536738,34.0 L21.01889125536738,29.99999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 23.51889125536736,109.857864376269 L18.51889125536736,109.857864376269 L21.01889125536736,105.857864376269 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 23.51889125536736,95.99999999999999 L18.51889125536736,95.99999999999997 L21.01889125536736,100.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 50.41498935084675,17.09896046765372 L50.41498935084674,22.09896046765372 L54.41498935084674,19.59896046765372 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 43.41498935084672,17.09896046765371 L43.41498935084673,22.09896046765371 L39.41498935084673,19.59896046765371 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 68.41498935084671,17.09896046765372 L68.41498935084672,22.09896046765372 L64.41498935084672,19.59896046765372 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 73.41498935084671,57.5 L73.41498935084672,62.5 L69.41498935084672,60.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 68.41498935084671,82.5 L68.41498935084672,87.5 L64.41498935084672,85.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 60.41498935084674,57.5 L60.41498935084672,62.5 L64.41498935084672,60.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 57.41498935084674,82.5 L57.41498935084672,87.5 L61.41498935084672,85.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 78.28391900432959,114.9512252701215 L80.06202020037439,110.278072572357 L75.43444744414036,111.1921679644034 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 108.4774091286094,34.0 L103.4774091286094,34.00000000000001 L105.9774091286094,30.00000000000001 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 108.4774091286094,36.00000000000001 L103.4774091286094,36.0 L105.9774091286094,40.00000000000001 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 39.4149893508467,19.5989604676537 54.4149893508467,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 39.4149893508467,30 39.4149893508467,17.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,30 54.4149893508467,17.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,19.5989604676537 64.4149893508467,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,19.5989604676537 70.2149893508467,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,30 64.4149893508467,17.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 70.2149893508467,19.5989604676537 81.2162386642012,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,60 69.4149893508467,60" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 69.4149893508467,60 81.8649893508467,60" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 69.4149893508467,40 69.4149893508467,62" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 81.8649893508467,60 92.8662386642012,60" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 21.0188912553674,30 21.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,30 19.0188912553674,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,100 19.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 21.0188912553674,105.857864376269 21.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 61.4149893508467,105.857864376269 19.0188912553674,105.857864376269" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,100 19.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,85 61.4149893508467,85" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,85 82.3549893508467,85" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,100 64.4149893508467,83" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 61.4149893508467,105.857864376269 61.4149893508467,83" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 82.3549893508467,85 71.3537400374922,85" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 105.977409128609,40 105.977409128609,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 69.4149893508467,40 107.977409128609,40" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 97.6223809817308,30 107.977409128609,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 105.977409128609,30 105.977409128609,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 97.6223809817308,30 107.977409128609,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 97.6223809817308,19.5989604676537 107.977409128609,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 61.4149893508467,105.857864376269 75.4344474441404,111.192167964403" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 75.4344474441404,111.192167964403 86.8024050423066,115.517594568066" StrokeThickness="0.5" Stroke="Black"/>
-                                <TextBlock Text="H2" Canvas.Left="109.950634401019" Canvas.Top="26.2661805607986"/>
-                                <TextBlock Text="H" Canvas.Left="10.8253247498174" Canvas.Top="54.8801618830833"/>
-                                <TextBlock Text="H1" Canvas.Left="4.5367263436645" Canvas.Top="93.8330613652731"/>
-                                <TextBlock Text="R" Canvas.Left="82.023305916792" Canvas.Top="97.3780464354396"/>
-                                <TextBlock Text="OH" Canvas.Left="109.704952713755" Canvas.Top="15.3742924254522"/>
-                                <TextBlock Text="L" Canvas.Left="44.5998853431258" Canvas.Top="3.96900207646414"/>
-                                <TextBlock Text="L1" Canvas.Left="70.7149893508467" Canvas.Top="3.96900207646415"/>
-                                <TextBlock Text="L2" Canvas.Left="82.3649893508467" Canvas.Top="44.3700416088104"/>
-                                <TextBlock Text="L3" Canvas.Left="71.8537400374922" Canvas.Top="69.3700416088104"/>
+                            <Canvas  Width="230" Height="230">
+                                <Path Data="M 124.8915298484465,129.7539302537293 A 22.5,22.5 0 1 1 90.83845195207755,153.2490555547226L79.89152984844648,34.99999999999997 L62.79738270522748,34.99999999999997 L62.79738270522748,215.0 L167.2026172947725,215.0 L167.2026172947725,34.99999999999999 L139.8915298484465,34.99999999999999 L124.8915298484465,49.99999999999999 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.3915298484465,34.99999999999999 L102.3915298484465,140.0 L117.3915298484465,140.0 L117.3915298484465,34.99999999999999 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 188.4851595150904,29.0 L180.9851595150905,28.99999999999999 L184.7351595150905,35.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 188.4851595150904,25.39844070148055 L180.9851595150905,25.39844070148058 L184.7351595150905,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522745,40.99999999999997 L43.54738270522745,40.99999999999999 L47.29738270522745,34.99999999999997 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522742,154.7867965644035 L43.54738270522743,154.7867965644035 L47.29738270522743,148.7867965644035 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522742,134.0 L43.54738270522743,133.9999999999999 L47.29738270522743,140.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 96.39152984844651,15.64844070148058 L96.39152984844648,23.14844070148058 L102.3915298484465,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 85.89152984844645,15.64844070148055 L85.89152984844648,23.14844070148055 L79.89152984844648,19.39844070148055 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 123.3915298484465,15.64844070148058 L123.3915298484465,23.14844070148058 L117.3915298484465,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 130.8915298484464,76.25 L130.8915298484464,83.75 L124.8915298484465,80.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 123.3915298484465,113.75 L123.3915298484465,121.25 L117.3915298484465,117.5 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 111.3915298484465,76.24999999999999 L111.3915298484465,83.75 L117.3915298484465,80.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 106.8915298484465,113.75 L106.8915298484465,121.25 L112.8915298484465,117.5 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 138.1949243286708,162.4268379051823 L140.862076122738,155.4171088585355 L133.920716988387,156.7882519466052 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 188.4851595150904,40.99999999999999 L180.9851595150905,41.0 L184.7351595150905,35.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 188.4851595150904,44.0 L180.9851595150905,43.99999999999999 L184.7351595150905,49.99999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 111.8915298484465,36.99999999999999 L111.8915298484465,32.99999999999999 L107.8915298484465,32.99999999999999 L107.8915298484465,36.99999999999999 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 79.8915298484465,19.3984407014805 102.391529848446,19.3984407014805" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 79.8915298484465,35 79.8915298484465,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,35 102.391529848446,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,19.3984407014806 117.391529848446,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,19.3984407014806 126.091529848446,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,35 117.391529848446,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 126.091529848446,19.3984407014806 137.092779161801,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,80 124.891529848446,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848446,80 137.341529848446,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848446,50 124.891529848446,85" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 137.341529848446,80 148.342779161801,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 47.2973827052275,35 47.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,35 42.2973827052275,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,140 42.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 47.2973827052274,148.786796564403 47.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 112.891529848446,148.786796564404 42.2973827052274,148.786796564403" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,140 42.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,117.5 112.891529848446,117.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,117.5 144.301529848446,117.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,140 117.391529848446,112.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 112.891529848446,148.786796564404 112.891529848446,112.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 144.301529848446,117.5 133.300280535092,117.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 184.73515951509,50 184.73515951509,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848446,50 189.73515951509,50" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 167.202617294772,35 189.73515951509,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 184.73515951509,35 184.73515951509,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 167.202617294772,35 189.73515951509,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 167.202617294772,19.3984407014806 189.73515951509,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 112.891529848446,148.786796564404 133.920716988387,156.788251946605" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 133.920716988387,156.788251946605 150.738995750748,163.187486792296" StrokeThickness="0.5" Stroke="Black"/>
+                                <TextBlock Text="H2" Canvas.Left="190.327520601057" Canvas.Top="33.5618867279609"/>
+                                <TextBlock Text="H" Canvas.Left="34.9174496135691" Canvas.Top="78.5848261579582"/>
+                                <TextBlock Text="H1" Canvas.Left="27.4349118858257" Canvas.Top="135.270445374659"/>
+                                <TextBlock Text="R" Canvas.Left="143.804004697364" Canvas.Top="142.067069653159"/>
+                                <TextBlock Text="OH" Canvas.Left="190.326474892809" Canvas.Top="17.7752697589123"/>
+                                <TextBlock Text="L" Canvas.Left="88.8264258407255" Canvas.Top="3.76848231029097"/>
+                                <TextBlock Text="L1" Canvas.Left="126.591529848446" Canvas.Top="3.76848231029099"/>
+                                <TextBlock Text="L2" Canvas.Left="137.841529848446" Canvas.Top="64.3700416088104"/>
+                                <TextBlock Text="L3" Canvas.Left="133.800280535092" Canvas.Top="101.87004160881"/>
                             </Canvas>
-                            <Canvas  Width="135" Height="160">
-                                <Path Data="M 54.41498935084673,30.0 L54.41498935084673,100.0 L64.41498935084672,100.0 L64.41498935084672,30.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 97.62238098173077,150.0 L97.62238098173077,30.0 L79.41498935084672,30.0 A 10,10 0 0 1 69.41498935084672,40.00000000000001L69.41498935084672,93.16928683581952 A 1,1 0 0 1 46.71293741993413,108.8327037031484L39.41498935084673,29.99999999999999 L28.01889125536736,29.99999999999999 L28.01889125536736,150.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 108.4774091286094,26.00000000000002 L103.4774091286094,26.0 L105.9774091286094,30.00000000000001 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 108.4774091286094,23.59896046765371 L103.4774091286094,23.59896046765373 L105.9774091286094,19.59896046765372 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 23.51889125536738,33.99999999999999 L18.51889125536738,34.0 L21.01889125536738,29.99999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 23.51889125536736,109.857864376269 L18.51889125536736,109.857864376269 L21.01889125536736,105.857864376269 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 23.51889125536736,95.99999999999999 L18.51889125536736,95.99999999999997 L21.01889125536736,100.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 50.41498935084675,17.09896046765372 L50.41498935084674,22.09896046765372 L54.41498935084674,19.59896046765372 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 43.41498935084672,17.09896046765371 L43.41498935084673,22.09896046765371 L39.41498935084673,19.59896046765371 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 68.41498935084671,17.09896046765372 L68.41498935084672,22.09896046765372 L64.41498935084672,19.59896046765372 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 73.41498935084671,57.5 L73.41498935084672,62.5 L69.41498935084672,60.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 68.41498935084671,82.5 L68.41498935084672,87.5 L64.41498935084672,85.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 60.41498935084674,57.5 L60.41498935084672,62.5 L64.41498935084672,60.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 57.41498935084674,82.5 L57.41498935084672,87.5 L61.41498935084672,85.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 78.28391900432959,114.9512252701215 L80.06202020037439,110.278072572357 L75.43444744414036,111.1921679644034 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 78.70451856894324,40.76822394390695 L81.85733221960966,36.88753249982491 L77.17637223901082,36.30562730133281 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 39.4149893508467,19.5989604676537 54.4149893508467,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 39.4149893508467,30 39.4149893508467,17.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,30 54.4149893508467,17.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,19.5989604676537 64.4149893508467,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,19.5989604676537 70.2149893508467,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,30 64.4149893508467,17.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 70.2149893508467,19.5989604676537 81.2162386642012,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,60 69.4149893508467,60" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 69.4149893508467,60 81.8649893508467,60" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 69.4149893508467,40 69.4149893508467,62" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 81.8649893508467,60 92.8662386642012,60" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 21.0188912553674,30 21.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,30 19.0188912553674,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,100 19.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 21.0188912553674,105.857864376269 21.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 61.4149893508467,105.857864376269 19.0188912553674,105.857864376269" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 54.4149893508467,100 19.0188912553674,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,85 61.4149893508467,85" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,85 82.3549893508467,85" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 64.4149893508467,100 64.4149893508467,83" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 61.4149893508467,105.857864376269 61.4149893508467,83" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 82.3549893508467,85 71.3537400374922,85" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 105.977409128609,30 105.977409128609,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 97.6223809817308,30 107.977409128609,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 97.6223809817308,19.5989604676537 107.977409128609,19.5989604676537" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 61.4149893508467,105.857864376269 75.4344474441404,111.192167964403" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 75.4344474441404,111.192167964403 86.8024050423066,115.517594568066" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 69.4149893508467,30 77.1763722390108,36.3056273013328" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 77.1763722390108,36.3056273013328 87.103597271151,44.3708628516362" StrokeThickness="0.5" Stroke="Black"/>
-                                <TextBlock Text="H2" Canvas.Left="83.5410180903729" Canvas.Top="27.266647472562"/>
-                                <TextBlock Text="H" Canvas.Left="10.8253247498174" Canvas.Top="54.8801618830833"/>
-                                <TextBlock Text="H1" Canvas.Left="4.5367263436645" Canvas.Top="93.8330613652731"/>
-                                <TextBlock Text="R" Canvas.Left="82.023305916792" Canvas.Top="97.3780464354396"/>
-                                <TextBlock Text="OH" Canvas.Left="109.704952713755" Canvas.Top="15.3742924254522"/>
-                                <TextBlock Text="L" Canvas.Left="44.5998853431258" Canvas.Top="3.96900207646414"/>
-                                <TextBlock Text="L1" Canvas.Left="70.7149893508467" Canvas.Top="3.96900207646415"/>
-                                <TextBlock Text="L2" Canvas.Left="82.3649893508467" Canvas.Top="44.3700416088104"/>
-                                <TextBlock Text="L3" Canvas.Left="71.8537400374922" Canvas.Top="69.3700416088104"/>
+                            <Canvas  Width="230" Height="230">
+                                <Path Data="M 102.3915298484465,34.99999999999999 L102.3915298484465,140.0 L117.3915298484465,140.0 L117.3915298484465,34.99999999999999 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 167.2026172947725,215.0 L167.2026172947725,34.99999999999999 L139.8915298484466,34.99999999999999 A 15,15 0 0 1 124.8915298484466,49.99999999999999L124.8915298484466,129.7539302537293 A 22.5,22.5 0 1 1 90.8384519520776,153.2490555547226L79.89152984844651,34.99999999999997 L62.79738270522756,34.99999999999997 L62.79738270522756,215.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 188.4851595150904,29.0 L180.9851595150905,28.99999999999999 L184.7351595150905,35.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 188.4851595150904,25.39844070148055 L180.9851595150905,25.39844070148058 L184.7351595150905,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522745,40.99999999999997 L43.54738270522745,40.99999999999999 L47.29738270522745,34.99999999999997 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522742,154.7867965644035 L43.54738270522743,154.7867965644035 L47.29738270522743,148.7867965644035 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522742,134.0 L43.54738270522743,133.9999999999999 L47.29738270522743,140.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 96.39152984844651,15.64844070148058 L96.39152984844648,23.14844070148058 L102.3915298484465,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 85.89152984844645,15.64844070148055 L85.89152984844648,23.14844070148055 L79.89152984844648,19.39844070148055 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 123.3915298484465,15.64844070148058 L123.3915298484465,23.14844070148058 L117.3915298484465,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 130.8915298484464,76.25 L130.8915298484464,83.75 L124.8915298484465,80.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 123.3915298484465,113.75 L123.3915298484465,121.25 L117.3915298484465,117.5 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 111.3915298484465,76.24999999999999 L111.3915298484465,83.75 L117.3915298484465,80.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 106.8915298484465,113.75 L106.8915298484465,121.25 L112.8915298484465,117.5 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 138.1949243286708,162.4268379051823 L140.862076122738,155.4171088585355 L133.920716988387,156.7882519466052 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 138.46315121289,51.45823786254717 L143.3206611427924,45.74381774490625 L136.3203700837284,44.71501985980479 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 111.8915298484465,36.99999999999999 L111.8915298484465,32.99999999999999 L107.8915298484465,32.99999999999999 L107.8915298484465,36.99999999999999 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 79.8915298484465,19.3984407014805 102.391529848446,19.3984407014805" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 79.8915298484465,35 79.8915298484465,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,35 102.391529848446,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,19.3984407014806 117.391529848446,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,19.3984407014806 126.091529848446,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,35 117.391529848446,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 126.091529848446,19.3984407014806 137.092779161801,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,80 124.891529848446,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848446,80 136.891529848447,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 136.891529848447,80 147.892779161801,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 47.2973827052275,35 47.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,35 42.2973827052275,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 47.2973827052274,148.786796564403 47.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 112.891529848446,148.786796564404 42.2973827052274,148.786796564403" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,140 42.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,117.5 112.891529848446,117.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,117.5 144.301529848446,117.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 112.891529848446,148.786796564404 112.891529848446,112.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 144.301529848446,117.5 133.300280535092,117.5" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 184.73515951509,35 184.73515951509,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 167.202617294772,35 189.73515951509,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 167.202617294772,19.3984407014806 189.73515951509,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 112.891529848446,148.786796564404 133.920716988387,156.788251946605" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 133.920716988387,156.788251946605 150.738995750748,163.187486792296" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848447,35 136.320370083728,44.7150198598048" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 136.320370083728,44.7150198598048 153.543918066816,59.3557976874136" StrokeThickness="0.5" Stroke="Black"/>
+                                <TextBlock Text="H" Canvas.Left="34.9174496135691" Canvas.Top="78.5848261579582"/>
+                                <TextBlock Text="H1" Canvas.Left="27.4349118858257" Canvas.Top="135.270445374659"/>
+                                <TextBlock Text="R" Canvas.Left="143.804004697364" Canvas.Top="142.067069653159"/>
+                                <TextBlock Text="OH" Canvas.Left="190.326474892809" Canvas.Top="17.7752697589123"/>
+                                <TextBlock Text="H2" Canvas.Left="149.146223267118" Canvas.Top="37.8777800337164"/>
+                                <TextBlock Text="L" Canvas.Left="88.8264258407255" Canvas.Top="3.76848231029097"/>
+                                <TextBlock Text="L1" Canvas.Left="126.591529848446" Canvas.Top="3.76848231029099"/>
+                                <TextBlock Text="L2" Canvas.Left="137.391529848447" Canvas.Top="64.3700416088104"/>
+                                <TextBlock Text="L3" Canvas.Left="133.800280535092" Canvas.Top="101.87004160881"/>
                             </Canvas>
-                            <Image Width="200" Source="/MB_CutObject;component/Выкружка №5.png" />
+                            <Canvas  Width="230" Height="230">
+                                <Path Data="M 102.3915298484465,34.99999999999999 L102.3915298484465,140.0 L117.3915298484465,140.0 L117.3915298484465,34.99999999999999 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 187.2026172947724,215.0 L187.2026172947724,34.99999999999998 L139.8915298484465,34.99999999999998 A 15,15 0 0 1 136.3203700837283,44.7150198598048A 14.9999999999999,14.9999999999999 0 0 1 124.8915298484465,49.99999999999998L124.8915298484465,80.00000000000006 L124.8915298484465,130.0 L134.8915298484465,130.0 A 20,20 0 0 1 154.3753560027515,154.5144787505114A 20,20 0 0 1 134.8915298484465,170.0L110.6231889175081,170.0 A 20,20 0 0 1 96.96976390851327,164.6145128390842A 20.0000000000001,20.0000000000001 0 0 1 90.70834351903557,151.843619471295L79.89152984844645,34.99999999999996 L62.79738270522739,34.99999999999996 L62.79738270522739,215.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 208.4851595150904,29.0 L200.9851595150905,28.99999999999999 L204.7351595150905,35.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 208.4851595150904,25.39844070148055 L200.9851595150905,25.39844070148058 L204.7351595150905,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522745,40.99999999999997 L43.54738270522745,40.99999999999999 L47.29738270522745,34.99999999999997 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522742,154.7867965644035 L43.54738270522743,154.7867965644035 L47.29738270522743,148.7867965644035 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 51.04738270522742,134.0 L43.54738270522743,133.9999999999999 L47.29738270522743,140.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 96.39152984844651,15.64844070148058 L96.39152984844648,23.14844070148058 L102.3915298484465,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 85.89152984844645,15.64844070148055 L85.89152984844648,23.14844070148055 L79.89152984844648,19.39844070148055 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 123.3915298484465,15.64844070148058 L123.3915298484465,23.14844070148058 L117.3915298484465,19.39844070148058 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 130.8915298484464,76.25 L130.8915298484464,83.75 L124.8915298484465,80.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 140.8915298484466,113.7500000000008 L140.8915298484466,121.2500000000008 L134.8915298484466,117.5000000000008 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 111.3915298484465,76.24999999999999 L111.3915298484465,83.75 L117.3915298484465,80.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 118.8915298484466,113.7500000000008 L118.8915298484466,121.2500000000008 L124.8915298484466,117.5000000000008 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 161.6188829656634,152.5699178392592 L154.3753560027516,154.5144787505114 L159.5527682132093,159.3370198652147 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 138.46315121289,51.45823786254717 L143.3206611427924,45.74381774490625 L136.3203700837284,44.71501985980479 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 95.0311181933167,171.8596251771332 L96.96976390851341,164.6145128390842 L90.20435118047591,166.6861524359513 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 104.6231889175082,186.4692281327048 L104.6231889175082,193.9692281327048 L110.6231889175082,190.2192281327048 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 123.3915298484464,186.4692281327048 L123.3915298484464,193.9692281327048 L117.3915298484465,190.2192281327048 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 140.8915298484466,113.7500000000008 L140.8915298484466,121.2500000000008 L134.8915298484466,117.5000000000008 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.3915298484465,190.2192281327048 L123.3915298484464,186.4692281327048 L123.3915298484464,193.9692281327048 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 104.6231889175082,186.4692281327048 L110.6231889175082,190.2192281327048 L104.6231889175082,193.9692281327048 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 111.8915298484465,36.99999999999999 L111.8915298484465,32.99999999999999 L107.8915298484465,32.99999999999999 L107.8915298484465,36.99999999999999 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 79.8915298484465,19.3984407014805 102.391529848446,19.3984407014805" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 79.8915298484465,35 79.8915298484465,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,35 102.391529848446,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,19.3984407014806 117.391529848446,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,19.3984407014806 126.091529848446,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,35 117.391529848446,14.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 126.091529848446,19.3984407014806 137.092779161801,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,80 124.891529848446,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848446,80 136.891529848447,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 136.891529848447,80 147.892779161801,80" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 47.2973827052275,35 47.2973827052274,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,35 42.2973827052275,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 47.2973827052275,150 47.2973827052275,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 134.891529848447,150 42.2973827052275,150" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.391529848446,140 42.2973827052275,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848447,117.500000000001 134.891529848447,117.500000000001" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 134.891529848447,117.500000000001 155.291529848447,117.500000000001" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 134.891529848447,150 134.891529848447,112.500000000001" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 155.291529848447,117.500000000001 144.290280535092,117.500000000001" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 204.73515951509,35 204.73515951509,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 187.202617294772,35 209.73515951509,35" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 187.202617294772,19.3984407014806 209.73515951509,19.3984407014806" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,190.219228132705 110.623188917508,190.219228132705" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,190.219228132705 129.371493296207,190.219228132705" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.391529848446,140 117.391529848446,195.219228132705" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 110.623188917508,150 110.623188917508,195.219228132705" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 129.371493296207,190.219228132705 140.372742609562,190.219228132705" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 124.891529848447,35 136.320370083728,44.7150198598048" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 136.320370083728,44.7150198598048 153.543918066816,59.3557976874136" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 134.891529848447,150 154.375356002752,154.514478750512" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 154.375356002752,154.514478750512 174.367905232934,159.146830628085" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 110.623188917508,150 96.9697639085134,164.614512839084" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 96.9697639085134,164.614512839084 84.9586010585162,177.471161889998" StrokeThickness="0.5" Stroke="Black"/>
+                                <TextBlock Text="H" Canvas.Left="34.9174496135691" Canvas.Top="78.5848261579582"/>
+                                <TextBlock Text="H1" Canvas.Left="27.4349118858257" Canvas.Top="135.270445374659"/>
+                                <TextBlock Text="R" Canvas.Left="167.021518650767" Canvas.Top="142.97841132202"/>
+                                <TextBlock Text="OH" Canvas.Left="210.326474892809" Canvas.Top="17.7752697589123"/>
+                                <TextBlock Text="H2" Canvas.Left="149.146223267118" Canvas.Top="37.8777800337164"/>
+                                <TextBlock Text="R1" Canvas.Left="75.7886333001496" Canvas.Top="160.062932186397"/>
+                                <TextBlock Text="L" Canvas.Left="88.8264258407255" Canvas.Top="3.76848231029097"/>
+                                <TextBlock Text="L1" Canvas.Left="126.591529848446" Canvas.Top="3.76848231029099"/>
+                                <TextBlock Text="L2" Canvas.Left="137.391529848447" Canvas.Top="64.3700416088104"/>
+                                <TextBlock Text="L3" Canvas.Left="144.790280535092" Canvas.Top="101.870041608811"/>
+                                <TextBlock Text="L4" Canvas.Left="129.871493296207" Canvas.Top="174.589269741515"/>
+                            </Canvas>
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -286,6 +614,12 @@
                     </ListBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Canvas Margin="5,0,0,0" Height="20">
+                            <Path Data="M 8.0,18.0 L8.0,10.0 L0.0,10.0 L0.0,18.0 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                            <TextBlock Text=" - точка установки" Canvas.Left="10" Canvas.Top="5" Height="25" Width="100"/>
+                        </Canvas>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label x:Name="l_Height" Content="H" Width="35"/>
                         <UIControls:WpfFilterCheckBox AttributeName="height"/>
@@ -341,19 +675,28 @@
                         <UIControls:WpfFilterCheckBox AttributeName="offsetL"/>
                         <TextBox x:Name="tb_offsetL" Text="{Binding OffsetL, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
+                    
                 </StackPanel>
-
             </StackPanel>
 
-            <Canvas  Width="135" Height="160">
+            <Canvas  Width="230" Height="230" Margin="500,0">
+
+
+
+
+
+                
+
 
 
 
 
             </Canvas>
+
         </Grid>
         <UIControls:WpfSaveLoad Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
         <UIControls:WpfOkApplyModifyGetOnOffCancel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ApplyClicked="WPFOkApplyModifyGetOnOffCancel_ApplyClicked" CancelClicked="WPFOkApplyModifyGetOnOffCancel_CancelClicked" GetClicked="WPFOkApplyModifyGetOnOffCancel_GetClicked" OkClicked="WPFOkApplyModifyGetOnOffCancel_OkClicked" OnOffClicked="WPFOkApplyModifyGetOnOffCancel_OnOffClicked" ModifyClicked="WPFOkApplyModifyGetOnOffCancel_ModifyClicked"/>
+       
 
     </Grid>
 </tsd:PluginWindowBase>
