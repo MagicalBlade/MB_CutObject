@@ -50,6 +50,9 @@ namespace MB_CutObject.Models
         public int typeCut;
         [StructuresField("mirror")]
         public int mirror;
+
+        public string heightstr = "321";
+
         #endregion
     }
 
@@ -128,7 +131,6 @@ namespace MB_CutObject.Models
             try
             {
                 GetValuesFromDialog();
-
                 if (Input == null)
                 {
                     return false;
@@ -300,13 +302,13 @@ namespace MB_CutObject.Models
                             //Подготовка данных для получения точки на окружности при смещении от продольного ребра
                             double vkat1 = Math.Sqrt(Math.Pow(_Radius, 2) - Math.Pow((_Width1 / 2 + _Width2), 2));
 
-                            AddContourPoint( - _Width1 / 2 - _Width2 - _Height2 - _OffsetH, - _OffsetH, centerpart, booleanCP, null);
-                            AddContourPoint( - _Width1 / 2 - _Width2, _Height2, centerpart, booleanCP, null);
-                            AddContourPoint( - _Width1 / 2 - _Width2, _Height + _Height1 - vkat1, centerpart, booleanCP, null);
-                            AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
-                            AddContourPoint(_Width1 / 2 + _Width2, _Height + _Height1 - vkat1, centerpart, booleanCP, null);
-                            AddContourPoint(_Width1 / 2 + _Width2, _Height2, centerpart, booleanCP, null);
-                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, -_OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint( - _Width1 / 2 - _Width2 - _Height2 - _OffsetH, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint( - _Width1 / 2 - _Width2, - _Height2, centerpart, booleanCP, null);
+                            AddContourPoint( - _Width1 / 2 - _Width2, -(_Height + _Height1 - vkat1), centerpart, booleanCP, null);
+                            AddContourPoint(0, - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                            AddContourPoint(_Width1 / 2 + _Width2, -(_Height + _Height1 - vkat1), centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2, - _Height2, centerpart, booleanCP, null);
+                            AddContourPoint(_Width1 / 2 + _Width2 + _Height2 + _OffsetH, _OffsetH, centerpart, booleanCP, null);
                         }
                         break;
                 }
