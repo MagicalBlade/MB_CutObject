@@ -26,6 +26,7 @@ namespace MB_CutObject.ViewModels
         private double offsetL = 0.0;
         private int typeCut = 0;
         private int mirror = 0;
+
         #endregion
 
         #region Properties
@@ -107,6 +108,9 @@ namespace MB_CutObject.ViewModels
             get { return mirror; }
             set { mirror = value; OnPropertyChanged("Mirror"); }
         }
+
+
+
         #endregion
 
 

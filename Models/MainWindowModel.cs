@@ -15,6 +15,7 @@ using Tekla.Structures.Model.Operations;
 using Tekla.Structures.Model.UI;
 using Tekla.Structures.Plugins;
 using TSG = Tekla.Structures.Geometry3d;
+using static MB_CutObject.Views.MainWindow;
 
 namespace MB_CutObject.Models
 {
@@ -50,10 +51,9 @@ namespace MB_CutObject.Models
         public int typeCut;
         [StructuresField("mirror")]
         public int mirror;
-
-        public string heightstr = "321";
-
         #endregion
+
+
     }
 
     [Plugin("MB_CutObject")]
@@ -109,6 +109,7 @@ namespace MB_CutObject.Models
         /// Запрос к пользователю
         /// </summary>
         /// <returns></returns>
+        
         public override List<InputDefinition> DefineInput()
         {
             List<InputDefinition> Input = new List<InputDefinition>();
@@ -121,6 +122,7 @@ namespace MB_CutObject.Models
 
             return Input;
         }
+
         /// <summary>
         /// Тело библиотеки
         /// </summary>
@@ -181,11 +183,11 @@ namespace MB_CutObject.Models
                             //Координата Х для удлинения выреза
                             double offsetX = _OffsetH * Math.Tan(angle3);
 
-                            AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
-                            AddContourPoint(0 - hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
-                            AddContourPoint(0, _Height + _Height1 + _Radius, centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
-                            AddContourPoint(hkat, _Height + _Height1 + vkat, centerpart, booleanCP, null);
-                            AddContourPoint(_Width + _Width1 / 2 + offsetX, 0 - _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(0 - _Width - _Width1 / 2 - offsetX, _OffsetH, centerpart, booleanCP, null);
+                            AddContourPoint(0 - hkat, - (_Height + _Height1 + vkat), centerpart, booleanCP, null);
+                            AddContourPoint(0, - (_Height + _Height1 + _Radius), centerpart, booleanCP, new Chamfer(_Radius, 0, Chamfer.ChamferTypeEnum.CHAMFER_ARC_POINT));
+                            AddContourPoint(hkat, -(_Height + _Height1 + vkat), centerpart, booleanCP, null);
+                            AddContourPoint(_Width + _Width1 / 2 + offsetX, _OffsetH, centerpart, booleanCP, null);
                         }
                         break;
                     case 3:
@@ -382,6 +384,8 @@ namespace MB_CutObject.Models
             _OffsetL = Data.offsetL;
             _TypeCut = Data.typeCut;
             _Mirror = Data.mirror;
+            
+          
 
 
             if (IsDefaultValue(_Height))
@@ -410,6 +414,7 @@ namespace MB_CutObject.Models
                 _TypeCut = 0;
             if (IsDefaultValue(_Mirror))
                 _Mirror = 0;
+
         }
 
         // Write your private methods here.

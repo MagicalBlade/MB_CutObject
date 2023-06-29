@@ -28,8 +28,8 @@ namespace MB_CutObject.Views
             InitializeComponent();
             dataModel = DataModel;
         }
-        //Обновляет свойства форма для загрузки ззначений поумолчанию
-        //Если есть файл standard в папке с плагином с сохраненными значениями свойст, то этот метод не нужен
+        //Обновляет свойства формы для загрузки значений поумолчанию
+        //Если есть файл standard в папке с плагином с сохраненными значениями свойств, то этот метод не нужен
         /*
         protected override string LoadValuesPath(string FileName)
         {

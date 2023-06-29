@@ -341,82 +341,77 @@
                                 <TextBlock Text="OH" Canvas.Left="102" Canvas.Top="121" VerticalAlignment="Center"/>
                             </Canvas>
                             <Canvas  Width="230" Height="230">
-                                <Path Data="M 65,20 a 50,50 0 0 1 0,100 l -20,0 0,10 80,0 0,-130 -100,0 0,20 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
-
-                                <Path Data="M 30,120 l15,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 30,130 l15,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 35,120 l0,10" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 30,115 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 30,135 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 25,20 l0,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 65,20 l0,30" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 25,40 l40,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 25,40 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 65,40 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 45,120 l0,-15" StrokeThickness="0.5" Stroke="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <Path Data="M 65,120 l0,-15" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 45,110 l20,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 45,110 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 65,110 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 65,70 l35,-35" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 100,35 l-8,0 8,8 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 0,40 l20,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 0,40 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 25,40 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 90,135 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 90,145 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 95,135 l0,10" StrokeThickness="0.5" Stroke="Black"/>
-
-                                <TextBlock Text="H" Canvas.Left="19" Canvas.Top="116"/>
-                                <TextBlock Text="L" Canvas.Left="42" Canvas.Top="22"/>
-                                <TextBlock Text="L1" Canvas.Left="49" Canvas.Top="89"/>
-                                <TextBlock Text="R" Canvas.Left="70" Canvas.Top="40" VerticalAlignment="Center"/>
-                                <TextBlock Text="OL" Canvas.Left="5" Canvas.Top="20" VerticalAlignment="Center"/>
-                                <TextBlock Text="OH" Canvas.Left="102" Canvas.Top="131" VerticalAlignment="Center"/>
+                                <Path Data="M 200.0,20.00000000000001 L50.00000000000001,19.99999999999999 L50.00000000000001,46.00000000000001 L102.0,45.99999999999999 A 65,65 0 0 1 102.0,176.0L75.99999999999997,176.0 L75.99999999999997,189.0 L200.0,189.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 160.9567007544986,106.6216514363844 L159.9279419130987,99.19254279225754 L166.3856082491002,102.0840900412011 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 75.99999999999997,163.0 L81.99999999999991,159.25 L81.99999999999991,166.75 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 96.00000000000003,159.25 L102.0,163.0 L96.00000000000003,166.75 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 96.00000000000009,72.24999999999999 L102.0,76.00000000000001 L96.00000000000009,79.75000000000001 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 18.00000000000006,72.24999999999997 L24.0,76.0 L18.00000000000006,79.75 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 50.00000000000001,76.0 L55.99999999999995,72.25 L55.99999999999995,79.75 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 34.74999999999989,195.0 L27.24999999999994,195.0 L30.99999999999994,189.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 34.74999999999989,170.0 L27.24999999999994,170.0 L30.99999999999994,176.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 34.74999999999989,209.0 L27.24999999999994,209.0 L30.99999999999994,215.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 52.00000000000001,191.0 L52.00000000000001,187.0 L48.00000000000001,187.0 L48.00000000000001,191.0 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 50,46 50,189" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 31,176 31,189" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 76,176 26,176" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 76,163 102,163" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 76,176 76,158" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102,176 102,158" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102,76 50,76" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102,111 102,71" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 50,76 24,76" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 24,46 24,81" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 31,189 31,215" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 76,189 26,189" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 76,215 26,215" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102,111 166.3856082491,102.084090041201" StrokeThickness="0.5" Stroke="Black"/>
+                                <TextBlock Text="R" Canvas.Left="131.616737316425" Canvas.Top="89.0590469972393"/>
+                                <TextBlock Text="H" Canvas.Left="12.831944582035" Canvas.Top="173.579788512871"/>
+                                <TextBlock Text="OH" Canvas.Left="8.32885307531181" Canvas.Top="193.781481651406"/>
+                                <TextBlock Text="L1" Canvas.Left="83.9993753433227" Canvas.Top="147.37004160881"/>
+                                <TextBlock Text="L" Canvas.Left="73.6848959922791" Canvas.Top="60.3700416088104"/>
+                                <TextBlock Text="OL" Canvas.Left="30.9807295799256" Canvas.Top="60.3700416088104"/>
                             </Canvas>
                             <Canvas  Width="230" Height="230">
-                                <Path Data="M 47.5,35 a 15,15 0 0 1 30,0 l 17.5,85 10,0 0,-120 -85,0 0,120 10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
-                                <Path Data="M 57.5,50 l 10,0 0,70 -10,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
+                                <Path Data="M 108.0,140.0 L108.0,42.0 L122.0,42.0 L122.0,140.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 179.9999999999998,42.0 L179.9999999999998,210.0 L50.00000000000004,210.0 L50.00000000000004,42.0 L69.50000000000004,42.0 L94.41698917327462,165.1640923749244 A 21,21 0 0 0 135.5830108267255,165.1640923749244L160.4999999999998,42.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 102.0000000000001,18.25 L108.0,22.00000000000003 L102.0000000000001,25.75000000000003 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 69.50000000000004,22.00000000000003 L75.49999999999999,18.25000000000003 L75.49999999999999,25.75000000000003 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 122.0,22.00000000000003 L128.0,18.25000000000003 L128.0,25.75000000000003 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 154.5,18.24999999999997 L160.4999999999999,22.0 L154.5,25.75 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 200.7499999999998,48.0 L193.2499999999999,48.0 L196.9999999999999,42.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 200.7499999999999,167.0 L193.2499999999999,167.0 L196.9999999999999,161.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 200.7499999999998,16.0 L193.2499999999999,15.99999999999997 L196.9999999999999,22.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 200.7499999999999,134.0 L193.2499999999999,134.0 L196.9999999999999,140.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 134.5948359702232,179.9500634115046 L128.6888824299865,184.5728020782004 L127.9436682667483,177.5366699126631 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 117.0000000000001,44.0 L117.0000000000001,40.0 L113.0000000000001,40.0 L113.0000000000001,44.0 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 197,140 197,161" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 122,140 202,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,161 202,161" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 69.5,22 108,22" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 69.5,42 69.5,17" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 108,42 108,17" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 108,22 122,22" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 122,42 122,17" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 122,22 160.5,22" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 160.5,42 160.5,17" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 197,140 197,42" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 122,140 202,140" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 122,42 202,42" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 197,42 197,22" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 180,42 202,42" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 180,22 202,22" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,161 127.943668266748,177.536669912663" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 127.943668266748,177.536669912663 146.357611116718,201.062094732369" StrokeThickness="0.5" Stroke="Black"/>
+                                <TextBlock Text="H" Canvas.Left="202.090564661431" Canvas.Top="80.5783400434585"/>
+                                <TextBlock Text="H1" Canvas.Left="204.438241357271" Canvas.Top="142.260342615195"/>
+                                <TextBlock Text="R" Canvas.Left="142.766894778597" Canvas.Top="179.918649100825"/>
+                                <TextBlock Text="OH" Canvas.Left="201.60919741127" Canvas.Top="23.9802212614527"/>
+                                <TextBlock Text="L" Canvas.Left="86.4348959922791" Canvas.Top="6.37004160881045"/>
+                                <TextBlock Text="L1" Canvas.Left="109.999375343323" Canvas.Top="6.37004160881045"/>
+                                <TextBlock Text="L" Canvas.Left="138.934895992279" Canvas.Top="6.37004160881042"/>
 
-                                <Path Data="M 67.5,50 l60,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 67.5,120 l60,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 120,55 l0,65" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 115,115 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 115,55 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 62.5,35 l65,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 120,35 l0,15" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 115,30 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 62.5,35 l25,-25" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 73.5,24 l8,0 -8,-8 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 127.5,135 l-25,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 120,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 115,140 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 30,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 57.5,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 67.5,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 95,120 l0,15" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 30,130 l65,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 30,130 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 57.5,130 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 67.5,130 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 95,130 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <TextBlock Text="H" Canvas.Left="108" Canvas.Top="75"/>
-                                <TextBlock Text="H1" Canvas.Left="105" Canvas.Top="34"/>
-                                <TextBlock Text="L" Canvas.Left="42" Canvas.Top="132"/>
-                                <TextBlock Text="L1" Canvas.Left="57" Canvas.Top="132"/>
-                                <TextBlock Text="L" Canvas.Left="78" Canvas.Top="132"/>
-                                <TextBlock Text="R" Canvas.Left="73" Canvas.Top="0"/>
-                                <TextBlock Text="OH" Canvas.Left="100" Canvas.Top="120"/>
                             </Canvas>
                             <Canvas  Width="230" Height="230">
                                 <Path Data="M 124.8915298484465,129.7539302537293 A 22.5,22.5 0 1 1 90.83845195207755,153.2490555547226L79.89152984844648,34.99999999999997 L62.79738270522748,34.99999999999997 L62.79738270522748,215.0 L167.2026172947725,215.0 L167.2026172947725,34.99999999999999 L139.8915298484465,34.99999999999999 L124.8915298484465,49.99999999999999 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
@@ -808,7 +803,10 @@
 
             <Canvas  Width="230" Height="230" Margin="500,0">
 
+
                 
+
+
 
 
 
