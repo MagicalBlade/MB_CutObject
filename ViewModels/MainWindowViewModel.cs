@@ -15,7 +15,6 @@ namespace MB_CutObject.ViewModels
         #region Fields
         private double height = 0.0;
         private double height1 = 0.0;
-        private double height2 = 0.0;
         private double width = 0.0;
         private double width1 = 0.0;
         private double width2 = 0.0;
@@ -24,9 +23,12 @@ namespace MB_CutObject.ViewModels
         private double radius = 0.0;
         private double offsetH = 0.0;
         private double offsetL = 0.0;
+        private double dimensionF1 = 0.0;
+        private double dimensionF2 = 0.0;
+        private double dimensionF3 = 0.0;
         private int typeCut = 0;
         private int mirror = 0;
-
+        private int typeChamfer = 0;
         #endregion
 
         #region Properties
@@ -41,12 +43,6 @@ namespace MB_CutObject.ViewModels
         {
             get { return height1; }
             set { height1 = value; OnPropertyChanged("Height1"); }
-        }
-        [StructuresDialog("height2", typeof(TD.Double))]
-        public double Height2
-        {
-            get { return height2; }
-            set { height2 = value; OnPropertyChanged("Height2"); }
         }
         [StructuresDialog("width", typeof(TD.Double))]
         public double Width
@@ -96,6 +92,25 @@ namespace MB_CutObject.ViewModels
             get { return offsetL; }
             set { offsetL = value; OnPropertyChanged("OffsetL"); }
         }
+
+        [StructuresDialog("dimensionF1", typeof(TD.Double))]
+        public double DimensionF1
+        {
+            get { return dimensionF1; }
+            set { dimensionF1 = value; OnPropertyChanged("DimensionF1"); }
+        }
+        [StructuresDialog("dimensionF2", typeof(TD.Double))]
+        public double DimensionF2
+        {
+            get { return dimensionF2; }
+            set { dimensionF2 = value; OnPropertyChanged("DimensionF2"); }
+        }
+        [StructuresDialog("dimensionF3", typeof(TD.Double))]
+        public double DimensionF3
+        {
+            get { return dimensionF3; }
+            set { dimensionF3 = value; OnPropertyChanged("DimensionF3"); }
+        }
         [StructuresDialog("typeCut", typeof(TD.Integer))]
         public int TypeCut
         {
@@ -107,6 +122,12 @@ namespace MB_CutObject.ViewModels
         {
             get { return mirror; }
             set { mirror = value; OnPropertyChanged("Mirror"); }
+        }
+        [StructuresDialog("typeChamfer", typeof(TD.Integer))]
+        public int TypeChamfer
+        {
+            get { return typeChamfer; }
+            set { typeChamfer = value; OnPropertyChanged("Mirror"); }
         }
 
 
