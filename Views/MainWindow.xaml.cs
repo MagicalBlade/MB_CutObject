@@ -68,5 +68,120 @@ namespace MB_CutObject.Views
         {
             this.ToggleSelection();
         }
+
+        private void cb_typeCut_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            switch (comboBox.SelectedIndex)
+            {
+                case 0:
+                    sp_Height.Visibility = Visibility.Visible;
+                    sp_Height1.Visibility = Visibility.Collapsed;
+                    sp_Width.Visibility = Visibility.Visible;
+                    sp_Width1.Visibility = Visibility.Collapsed;
+                    sp_Width2.Visibility = Visibility.Collapsed;
+                    sp_Width3.Visibility = Visibility.Collapsed;
+                    sp_Width4.Visibility = Visibility.Collapsed;
+                    sp_Radius.Visibility = Visibility.Visible;
+                    sp_OffsetH.Visibility = Visibility.Visible;
+                    sp_OffsetL.Visibility = Visibility.Visible;
+                    
+                    sp_typeChamfer.Visibility = Visibility.Hidden;
+                    break;
+                case 1:
+                    sp_Height.Visibility = Visibility.Visible;
+                    sp_Height1.Visibility = Visibility.Collapsed;
+                    sp_Width.Visibility = Visibility.Visible;
+                    sp_Width1.Visibility = Visibility.Visible;
+                    sp_Width2.Visibility = Visibility.Collapsed;
+                    sp_Width3.Visibility = Visibility.Collapsed;
+                    sp_Width4.Visibility = Visibility.Collapsed;
+                    sp_Radius.Visibility = Visibility.Visible;
+                    sp_OffsetH.Visibility = Visibility.Visible;
+                    sp_OffsetL.Visibility = Visibility.Visible;
+                    
+                    sp_typeChamfer.Visibility = Visibility.Hidden;
+                    break;
+                case 2:
+                    sp_Height.Visibility = Visibility.Visible;
+                    sp_Height1.Visibility = Visibility.Visible;
+                    sp_Width.Visibility = Visibility.Visible;
+                    sp_Width1.Visibility = Visibility.Visible;
+                    sp_Width2.Visibility = Visibility.Collapsed;
+                    sp_Width3.Visibility = Visibility.Collapsed;
+                    sp_Width4.Visibility = Visibility.Collapsed;
+                    sp_Radius.Visibility = Visibility.Visible;
+                    sp_OffsetH.Visibility = Visibility.Visible;
+                    sp_OffsetL.Visibility = Visibility.Collapsed;
+                    
+                    sp_typeChamfer.Visibility = Visibility.Hidden;
+                    break;
+                case 3:
+                    sp_Height.Visibility = Visibility.Visible;
+                    sp_Height1.Visibility = Visibility.Visible;
+                    sp_Width.Visibility = Visibility.Visible;
+                    sp_Width1.Visibility = Visibility.Visible;
+                    sp_Width2.Visibility = Visibility.Visible;
+                    sp_Width3.Visibility = Visibility.Visible;
+                    sp_Width4.Visibility = Visibility.Collapsed;
+                    sp_Radius.Visibility = Visibility.Visible;
+                    sp_OffsetH.Visibility = Visibility.Visible;
+                    sp_OffsetL.Visibility = Visibility.Collapsed;
+
+                    sp_typeChamfer.Visibility = Visibility.Visible;
+                    break;
+                case 4:
+                    sp_Height.Visibility = Visibility.Visible;
+                    sp_Height1.Visibility = Visibility.Visible;
+                    sp_Width.Visibility = Visibility.Visible;
+                    sp_Width1.Visibility = Visibility.Visible;
+                    sp_Width2.Visibility = Visibility.Visible;
+                    sp_Width3.Visibility = Visibility.Visible;
+                    sp_Width4.Visibility = Visibility.Visible;
+                    sp_Radius.Visibility = Visibility.Visible;
+                    sp_OffsetH.Visibility = Visibility.Visible;
+                    sp_OffsetL.Visibility = Visibility.Collapsed;
+
+                    sp_typeChamfer.Visibility = Visibility.Visible;
+                    break;
+                case 5:
+                    sp_Height.Visibility = Visibility.Visible;
+                    sp_Height1.Visibility = Visibility.Visible;
+                    sp_Width.Visibility = Visibility.Collapsed;
+                    sp_Width1.Visibility = Visibility.Visible;
+                    sp_Width2.Visibility = Visibility.Visible;
+                    sp_Width3.Visibility = Visibility.Collapsed;
+                    sp_Width4.Visibility = Visibility.Collapsed;
+                    sp_Radius.Visibility = Visibility.Visible;
+                    sp_OffsetH.Visibility = Visibility.Visible;
+                    sp_OffsetL.Visibility = Visibility.Collapsed;
+
+                    sp_typeChamfer.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        private void cb_typeChamfer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            switch (comboBox.SelectedIndex)
+            {
+                case 0:
+                    sp_DimensionF1.Visibility = Visibility.Visible;
+                    sp_DimensionF2.Visibility = Visibility.Collapsed;
+                    sp_DimensionF3.Visibility = Visibility.Collapsed;
+                    break;
+                case 1:
+                    sp_DimensionF1.Visibility = Visibility.Visible;
+                    sp_DimensionF2.Visibility = Visibility.Collapsed;
+                    sp_DimensionF3.Visibility = Visibility.Collapsed;
+                    break;
+                case 2:
+                    sp_DimensionF1.Visibility = Visibility.Visible;
+                    sp_DimensionF2.Visibility = Visibility.Visible;
+                    sp_DimensionF3.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
     }
 }

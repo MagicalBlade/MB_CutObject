@@ -8,7 +8,7 @@
         xmlns:UIControls="clr-namespace:Tekla.Structures.Dialog.UIControls;assembly=Tekla.Structures.Dialog" 
                       xmlns:viewmodels="clr-namespace:MB_CutObject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
                       mc:Ignorable="d"
-        Title="Вырезы" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="#FFF0F0F0" >
+        Title="Мостостроение. Вырезы." Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="#FFF0F0F0" >
     <Window.Resources>
         <Style TargetType="ItemsControl">
             <Setter Property="Padding" Value="2"/>
@@ -309,36 +309,36 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <UIControls:WpfFilterCheckBox AttributeName="typeCut"/>
-                        <ComboBox x:Name="cb_typeCut" SelectedIndex="{Binding TypeCut}"  Width="260" Height="240" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                        <ComboBox x:Name="cb_typeCut" SelectedIndex="{Binding TypeCut}"  Width="260" Height="240" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="cb_typeCut_SelectionChanged">
                             <Canvas  Width="230" Height="230">
-                                <Path Data="M 20,40 l30,0 a 30,30 0 0 1 30,30 l 0,50 40,0 0,-120 -100,0 Z" StrokeThickness="1" Stroke="Black" Fill="#FFFFCF63"/>
-                                <Path Data="M 3,40 l17,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 3,120 l97,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 13,40 l0,80" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 20,40 l0,100" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 80,120 l0,20" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 20,135 l60,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 8,115 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 8,45 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 20,135 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 80,135 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 50,70 l21,-21" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 71,49 l-8,0 8,8 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black" RenderTransformOrigin="0.5,0.5"/>
-
-                                <Path Data="M 0,20 l20,0" StrokeThickness="0.5" Stroke="Black"/>
-                                <Path Data="M 0,20 l5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 20,20 l-5,-5 0,10 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-
-                                <Path Data="M 90,125 l5,-5 5,5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 90,135 l5,5 5,-5 Z" StrokeThickness="0.5" Stroke="Black" Fill="Black"/>
-                                <Path Data="M 95,125 l0,10" StrokeThickness="0.5" Stroke="Black"/>
-
-
-                                <TextBlock Text="H" Margin="0,72" VerticalAlignment="Center"/>
-                                <TextBlock Text="L" Canvas.Left="45" Canvas.Top="120"/>
-                                <TextBlock Text="R" Canvas.Left="50" Canvas.Top="45" VerticalAlignment="Center"/>
-                                <TextBlock Text="OL" Canvas.Left="3" Canvas.Top="0" VerticalAlignment="Center"/>
-                                <TextBlock Text="OH" Canvas.Left="102" Canvas.Top="121" VerticalAlignment="Center"/>
+                                <Path Data="M 175.0,180.0 L175.0,29.99999999999999 L75.00000000000003,29.99999999999999 L75.00000000000003,89.99999999999999 L90.00000000000003,89.99999999999997 A 25,25 0 0 1 115.0,115.0L115.0,180.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 69.00000000000006,56.24999999999996 L75.0,59.99999999999999 L69.00000000000006,63.74999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 49.0,59.99999999999999 L54.99999999999994,56.24999999999999 L54.99999999999994,63.74999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 149.1501375807632,186.0 L141.6501375807632,186.0 L145.4001375807632,180.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 149.1501375807632,200.0 L141.6501375807632,200.0 L145.4001375807632,206.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 109.0,194.25 L115.0,198.0 L109.0,201.75 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 75.0,198.0 L80.99999999999989,194.25 L80.99999999999989,201.75 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 58.74999999999994,174.0 L51.25,174.0 L55.0,180.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 58.74999999999994,95.99999999999999 L51.25,95.99999999999999 L55.0,89.99999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 109.6863427666556,99.59065515754331 L112.0996633042844,92.93946098035543 L116.7224667570214,98.84536381035213 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 77.0,182.0 L77.0,178.0 L73.0,178.0 L73.0,182.0 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 75,60 49,60" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 49,30 49,65" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 145.400137580763,180 145.400137580763,206" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 130.348545287609,206 150.400137580763,206" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,198 75,198" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,180 115,203" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 75,90 75,203" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 55,180 55,90" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 115,180 50,180" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 75,90 50,90" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 90,115 109.686342766656,99.5906551575433" StrokeThickness="0.5" Stroke="Black"/>
+                                <Path Data="M 109.686342766656,99.5906551575433 130.400628859991,83.3766949841914" StrokeThickness="0.5" Stroke="Black"/>
+                                <TextBlock Text="H" Canvas.Left="42.4655663563038" Canvas.Top="126.065248421419"/>
+                                <TextBlock Text="OH" Canvas.Left="152.928252097756" Canvas.Top="185.026242015127"/>
+                                <TextBlock Text="R" Canvas.Left="115.645188921529" Canvas.Top="71.7670583464209"/>
+                                <TextBlock Text="OL" Canvas.Left="55.9807295799255" Canvas.Top="44.3700416088104"/>
+                                <TextBlock Text="L" Canvas.Left="92.6848959922791" Canvas.Top="182.37004160881"/>
                             </Canvas>
                             <Canvas  Width="230" Height="230">
                                 <Path Data="M 200.0,20.00000000000001 L50.00000000000001,19.99999999999999 L50.00000000000001,46.00000000000001 L102.0,45.99999999999999 A 65,65 0 0 1 102.0,176.0L75.99999999999997,176.0 L75.99999999999997,189.0 L200.0,189.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
@@ -577,151 +577,154 @@
                                 <TextBlock Text="L2" Canvas.Left="144" Canvas.Top="94.8049378891689"/>
                             </Canvas>
                         </ComboBox>
-                        <StackPanel Orientation="Vertical" Margin="10,0">
-                            <StackPanel Orientation="Horizontal">
-                                <Label x:Name="l_typeChamfer" Content="Тип фаски/выреза"/>
-                                <UIControls:WpfFilterCheckBox AttributeName="typeChamfer"/>
-                            </StackPanel>
-                            <ComboBox x:Name="cb_typeChamfer" SelectedIndex="{Binding TypeChamfer}" Width="180" Height="160" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
-                                <Canvas  Width="150" Height="150">
-                                    <Path Data="M 122.5,120.0 L122.5,44.99999999999999 L77.50000000000001,44.99999999999999 L47.50000000000001,74.99999999999999 L47.5,120.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 47.5,26.99999999999999 L53.5,30.74999999999999 L53.5,23.24999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 71.50000000000011,30.75000000000001 L77.5,26.99999999999999 L71.50000000000011,23.24999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 33.25,50.99999999999998 L25.75,50.99999999999998 L29.5,44.99999999999998 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 33.25,69.0 L25.75,68.99999999999997 L29.5,74.99999999999997 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 47.5,27 77.5,27" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 47.5,75 47.5,22" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 77.5,45 77.5,22" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 29.5,45 29.5,75" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 77.5,45 24.5,45" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 47.5,75 24.5,75" StrokeThickness="0.5" Stroke="Black"/>
-                                    <TextBlock Text="F1" Canvas.Left="13.4801521287526" Canvas.Top="52.2502946037722"/>
-                                    <TextBlock Text="F1" Canvas.Left="57.4067711830139" Canvas.Top="11.3700416088104"/>
-                                </Canvas>
-                                <Canvas  Width="150" Height="150">
-                                    <Path Data="M 112.5,44.99999999999991 L67.5,44.99999999999991 A 30,30 0 0 1 37.5,74.99999999999991L37.5,120.0 L112.5,120.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 64.5444196456208,69.0553916208312 L59.00607316203126,74.11273462162829 L57.72937200318836,67.15338593435811 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 37.5,44.9999999999999 57.7293720031884,67.1533859343581" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 57.7293720031884,67.1533859343581 80.0891601253841,91.6398116920835" StrokeThickness="0.5" Stroke="Black"/>
-                                    <TextBlock Text="F1" Canvas.Left="74.703799573233" Canvas.Top="66.8545624931238"/>
-                                </Canvas>
-                                <Canvas  Width="150" Height="150">
-                                    <Path Data="M 37.5,120.0 L112.5,120.0 L112.5,45.0 L67.5,45.0 L67.5,65.0 A 10,10 0 0 1 57.5,75.0L37.5,75.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 61.50000000000011,38.75000000000003 L67.5,35.0 L61.50000000000011,31.25 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 37.5,35.0 L43.5,38.75 L43.5,31.25 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 31.25000000000001,50.99999999999999 L23.75000000000001,50.99999999999999 L27.50000000000001,44.99999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 31.25,69.00000000000003 L23.75,69.0 L27.5,75.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 64.69596111944672,71.94392853991249 L66.40956458864757,78.8087710836525 L71.61751099358193,73.41180024406746 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 37.5,35 67.5,35" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 37.5,75 37.5,30" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 67.5,45 67.5,30" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 27.5,45 27.5,75" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 67.5,45 22.5,45" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 37.5,75 22.5,75" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 57.5,65 64.6959611194467,71.9439285399125" StrokeThickness="0.5" Stroke="Black"/>
-                                    <Path Data="M 64.6959611194467,71.9439285399125 82.3046510049142,88.935888643161" StrokeThickness="0.5" Stroke="Black"/>
-                                    <TextBlock Text="F1" Canvas.Left="79.1268311335733" Canvas.Top="67.3371532233631"/>
-                                    <TextBlock Text="F3" Canvas.Left="11.1817231220353" Canvas.Top="51.1024936862842"/>
-                                    <TextBlock Text="F2" Canvas.Left="46.2955212593079" Canvas.Top="19.3700416088104"/>
-                                </Canvas>
-                            </ComboBox>
-                            <StackPanel Orientation="Horizontal">
-                                <Label x:Name="l_DimensionF1" Content="F1" Width="35"/>
-                                <UIControls:WpfFilterCheckBox AttributeName="dimensionF1"/>
-                                <TextBox x:Name="tb_DimensionF1" Text="{Binding DimensionF1, Mode=TwoWay}" Height="25" Width="100"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label x:Name="l_DimensionF2" Content="F2" Width="35"/>
-                                <UIControls:WpfFilterCheckBox AttributeName="dimensionF2"/>
-                                <TextBox x:Name="tb_DimensionF2" Text="{Binding DimensionF2, Mode=TwoWay}" Height="25" Width="100"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label x:Name="l_DimensionF3" Content="F3" Width="35"/>
-                                <UIControls:WpfFilterCheckBox AttributeName="dimensionF3"/>
-                                <TextBox x:Name="tb_DimensionF3" Text="{Binding DimensionF3, Mode=TwoWay}" Height="25" Width="100"/>
-                            </StackPanel>
-                        </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label x:Name="l_mirror" Content="Зеркально отразить"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="mirror"/>
-                    </StackPanel>
-                    <ListBox x:Name="cb_mirror" SelectedIndex="{Binding Mirror}" Width="120">
-                        <TextBlock Text="Нет"/>
-                        <TextBlock Text="Вертикально"/>
-                        <TextBlock Text="Горизонтально"/>
-                    </ListBox>
-                    
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Canvas Margin="5,0,0,0" Height="20">
+                        <Canvas Margin="20,0,0,0" Height="20">
                             <Path Data="M 8.0,18.0 L8.0,10.0 L0.0,10.0 L0.0,18.0 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
                             <TextBlock Text=" - точка установки" Canvas.Left="10" Canvas.Top="5" Height="25" Width="100"/>
                         </Canvas>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Label x:Name="l_mirror" Content="Зеркально отразить"/>
+                            <UIControls:WpfFilterCheckBox AttributeName="mirror"/>
+                        </StackPanel>
+                        <ListBox x:Name="cb_mirror" SelectedIndex="{Binding Mirror}" Width="120" HorizontalAlignment="Left">
+                            <TextBlock Text="Нет"/>
+                            <TextBlock Text="Вертикально"/>
+                            <TextBlock Text="Горизонтально"/>
+                        </ListBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Name="sp_Height" Orientation="Horizontal">
                         <Label x:Name="l_Height" Content="H" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="height"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Height" AttributeName="height"/>
                         <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="sp_Height1" Orientation="Horizontal">
                         <Label x:Name="l_Height1" Content="H1" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="height1"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Height1" AttributeName="height1"/>
                         <TextBox x:Name="tb_Height1" Text="{Binding Height1, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="sp_Width" Orientation="Horizontal">
                         <Label x:Name="l_Width" Content="L" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="width"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width" AttributeName="width"/>
                         <TextBox x:Name="tb_Width" Text="{Binding Width, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="sp_Width1" Orientation="Horizontal">
                         <Label x:Name="l_Width1" Content="L1" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="width1"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width1" AttributeName="width1"/>
                         <TextBox x:Name="tb_Width1" Text="{Binding Width1, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="sp_Width2" Orientation="Horizontal">
                         <Label x:Name="l_Width2" Content="L2" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="width2"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width2" AttributeName="width2"/>
                         <TextBox x:Name="tb_Width2" Text="{Binding Width2, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="sp_Width3" Orientation="Horizontal">
                         <Label x:Name="l_Width3" Content="L3" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="width3"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width3" AttributeName="width3"/>
                         <TextBox x:Name="tb_Width3" Text="{Binding Width3, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="sp_Width4" Orientation="Horizontal">
                         <Label x:Name="l_Width4" Content="L4" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="width4"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width4" AttributeName="width4"/>
                         <TextBox x:Name="tb_Width4" Text="{Binding Width4, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Name="sp_Radius" Orientation="Horizontal">
                         <Label x:Name="l_Radius" Content="R" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="radius"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Radius" AttributeName="radius"/>
                         <TextBox x:Name="tb_Radius" Text="{Binding Radius, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label x:Name="l_offsetH" Content="OH" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="offsetH"/>
-                        <TextBox x:Name="tb_offsetH" Text="{Binding OffsetH, Mode=TwoWay}" Height="25" Width="100"/>
+                    <StackPanel Name="sp_OffsetH" Orientation="Horizontal">
+                        <Label x:Name="l_OffsetH" Content="OH" Width="35"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_offsetH" AttributeName="offsetH"/>
+                        <TextBox x:Name="tb_OffsetH" Text="{Binding OffsetH, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label x:Name="l_offsetL" Content="OL" Width="35"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="offsetL"/>
-                        <TextBox x:Name="tb_offsetL" Text="{Binding OffsetL, Mode=TwoWay}" Height="25" Width="100"/>
+                    <StackPanel Name="sp_OffsetL" Orientation="Horizontal">
+                        <Label x:Name="l_OffsetL" Content="OL" Width="35"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_offsetL" AttributeName="offsetL"/>
+                        <TextBox x:Name="tb_OffsetL" Text="{Binding OffsetL, Mode=TwoWay}" Height="25" Width="100"/>
                     </StackPanel>
                     
                 </StackPanel>
+                <StackPanel Name="sp_typeChamfer" Orientation="Vertical" Margin="10,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="l_typeChamfer" Content="Тип фаски/выреза"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="typeChamfer"/>
+                    </StackPanel>
+                    <ComboBox x:Name="cb_typeChamfer" SelectedIndex="{Binding TypeChamfer}" Width="180" Height="160" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="cb_typeChamfer_SelectionChanged">
+                        <Canvas  Width="150" Height="150">
+                            <Path Data="M 122.5,120.0 L122.5,44.99999999999999 L77.50000000000001,44.99999999999999 L47.50000000000001,74.99999999999999 L47.5,120.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 47.5,26.99999999999999 L53.5,30.74999999999999 L53.5,23.24999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 71.50000000000011,30.75000000000001 L77.5,26.99999999999999 L71.50000000000011,23.24999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 33.25,50.99999999999998 L25.75,50.99999999999998 L29.5,44.99999999999998 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 33.25,69.0 L25.75,68.99999999999997 L29.5,74.99999999999997 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 47.5,27 77.5,27" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 47.5,75 47.5,22" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 77.5,45 77.5,22" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 29.5,45 29.5,75" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 77.5,45 24.5,45" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 47.5,75 24.5,75" StrokeThickness="0.5" Stroke="Black"/>
+                            <TextBlock Text="F1" Canvas.Left="13.4801521287526" Canvas.Top="52.2502946037722"/>
+                            <TextBlock Text="F1" Canvas.Left="57.4067711830139" Canvas.Top="11.3700416088104"/>
+                        </Canvas>
+                        <Canvas  Width="150" Height="150">
+                            <Path Data="M 112.5,44.99999999999991 L67.5,44.99999999999991 A 30,30 0 0 1 37.5,74.99999999999991L37.5,120.0 L112.5,120.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 64.5444196456208,69.0553916208312 L59.00607316203126,74.11273462162829 L57.72937200318836,67.15338593435811 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 37.5,44.9999999999999 57.7293720031884,67.1533859343581" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 57.7293720031884,67.1533859343581 80.0891601253841,91.6398116920835" StrokeThickness="0.5" Stroke="Black"/>
+                            <TextBlock Text="F1" Canvas.Left="74.703799573233" Canvas.Top="66.8545624931238"/>
+                        </Canvas>
+                        <Canvas  Width="150" Height="150">
+                            <Path Data="M 37.5,120.0 L112.5,120.0 L112.5,45.0 L67.5,45.0 L67.5,65.0 A 10,10 0 0 1 57.5,75.0L37.5,75.0 Z" Fill="#FFFFCF63" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 61.50000000000011,38.75000000000003 L67.5,35.0 L61.50000000000011,31.25 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 37.5,35.0 L43.5,38.75 L43.5,31.25 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 31.25000000000001,50.99999999999999 L23.75000000000001,50.99999999999999 L27.50000000000001,44.99999999999999 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 31.25,69.00000000000003 L23.75,69.0 L27.5,75.0 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 64.69596111944672,71.94392853991249 L66.40956458864757,78.8087710836525 L71.61751099358193,73.41180024406746 Z" Fill="Black" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 37.5,35 67.5,35" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 37.5,75 37.5,30" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 67.5,45 67.5,30" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 27.5,45 27.5,75" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 67.5,45 22.5,45" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 37.5,75 22.5,75" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 57.5,65 64.6959611194467,71.9439285399125" StrokeThickness="0.5" Stroke="Black"/>
+                            <Path Data="M 64.6959611194467,71.9439285399125 82.3046510049142,88.935888643161" StrokeThickness="0.5" Stroke="Black"/>
+                            <TextBlock Text="F1" Canvas.Left="79.1268311335733" Canvas.Top="67.3371532233631"/>
+                            <TextBlock Text="F3" Canvas.Left="11.1817231220353" Canvas.Top="51.1024936862842"/>
+                            <TextBlock Text="F2" Canvas.Left="46.2955212593079" Canvas.Top="19.3700416088104"/>
+                        </Canvas>
+                    </ComboBox>
+                    <StackPanel Name="sp_DimensionF1" Orientation="Horizontal">
+                        <Label x:Name="l_DimensionF1" Content="F1" Width="25" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_DimensionF1" AttributeName="dimensionF1" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_DimensionF1" Text="{Binding DimensionF1, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="sp_DimensionF2" Orientation="Horizontal">
+                        <Label x:Name="l_DimensionF2" Content="F2" Width="25" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_DimensionF2" AttributeName="dimensionF2" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_DimensionF2" Text="{Binding DimensionF2, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Name="sp_DimensionF3" Orientation="Horizontal">
+                        <Label x:Name="l_DimensionF3" Content="F3" Width="25" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_DimensionF3" AttributeName="dimensionF3" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_DimensionF3" Text="{Binding DimensionF3, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+
             </StackPanel>
 
             <Canvas  Width="150" Height="150" Margin="500,0">
 
 
 
-                
 
 
+
+
+               
 
 
 
