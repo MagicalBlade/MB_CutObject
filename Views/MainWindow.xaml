@@ -8,7 +8,7 @@
         xmlns:UIControls="clr-namespace:Tekla.Structures.Dialog.UIControls;assembly=Tekla.Structures.Dialog" 
                       xmlns:viewmodels="clr-namespace:MB_CutObject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
                       mc:Ignorable="d"
-        Title="Мостостроение. Вырезы." Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="#FFF0F0F0" >
+        Title="Мостостроение. Вырезы." Height="600" Width="700" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Background="#FFF0F0F0" >
     <Window.Resources>
         <Style TargetType="ItemsControl">
             <Setter Property="Padding" Value="2"/>
@@ -36,6 +36,7 @@
         <Style TargetType="ScrollViewer">
             <Setter Property="CanContentScroll" Value="False"/>
         </Style>
+        
         <!--#region ScrollBar -->
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -307,6 +308,7 @@
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
+                    <!--Тип выреза-->
                     <StackPanel Orientation="Horizontal">
                         <UIControls:WpfFilterCheckBox AttributeName="typeCut"/>
                         <ComboBox x:Name="cb_typeCut" SelectedIndex="{Binding TypeCut}"  Width="260" Height="240" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="cb_typeCut_SelectionChanged">
@@ -524,7 +526,7 @@
                                 <TextBlock Text="H1" Canvas.Left="27.4349118858257" Canvas.Top="135.270445374659"/>
                                 <TextBlock Text="R" Canvas.Left="167.021518650767" Canvas.Top="142.97841132202"/>
                                 <TextBlock Text="OH" Canvas.Left="210.326474892809" Canvas.Top="17.7752697589123"/>
-                                <TextBlock Text="R1" Canvas.Left="75.7886333001496" Canvas.Top="160.062932186397"/>
+                                <TextBlock Text="R" Canvas.Left="75.7886333001496" Canvas.Top="160.062932186397"/>
                                 <TextBlock Text="L" Canvas.Left="88.8264258407255" Canvas.Top="3.76848231029097"/>
                                 <TextBlock Text="L1" Canvas.Left="126.591529848446" Canvas.Top="3.76848231029099"/>
                                 <TextBlock Text="L2" Canvas.Left="137.391529848447" Canvas.Top="64.3700416088104"/>
@@ -578,16 +580,22 @@
                             </Canvas>
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Canvas Margin="20,0,0,0" Height="20">
-                            <Path Data="M 8.0,18.0 L8.0,10.0 L0.0,10.0 L0.0,18.0 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
-                            <TextBlock Text=" - точка установки" Canvas.Left="10" Canvas.Top="5" Height="25" Width="100"/>
-                        </Canvas>
-                    </StackPanel>
+                    <!--Условные обозначения-->
+                    <GroupBox Header="Условные обозначения:" BorderBrush="#FF2899DC">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Canvas Margin="5,0,0,0" Height="20">
+                                    <Path Data="M 8.0,18.0 L8.0,10.0 L0.0,10.0 L0.0,18.0 Z" Fill="Red" StrokeThickness="0.5" Stroke="Black"/>
+                                    <TextBlock Text=" - точка установки" Canvas.Left="10" Canvas.Top="5" Height="25" Width="100"/>
+                                </Canvas>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <!--Зеркальное отражение выреза-->
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <Label x:Name="l_mirror" Content="Зеркально отразить"/>
-                            <UIControls:WpfFilterCheckBox AttributeName="mirror"/>
+                            <Label x:Name="l_mirror" Content="Зеркально отразить" VerticalAlignment="Center"/>
+                            <UIControls:WpfFilterCheckBox AttributeName="mirror" VerticalAlignment="Center"/>
                         </StackPanel>
                         <ListBox x:Name="cb_mirror" SelectedIndex="{Binding Mirror}" Width="120" HorizontalAlignment="Left">
                             <TextBlock Text="Нет"/>
@@ -596,63 +604,64 @@
                         </ListBox>
                     </StackPanel>
                 </StackPanel>
+                <!--Параметры выреза-->
                 <StackPanel Orientation="Vertical">
                     <StackPanel Name="sp_Height" Orientation="Horizontal">
-                        <Label x:Name="l_Height" Content="H" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Height" AttributeName="height"/>
-                        <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Height" Content="H" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Height" AttributeName="height" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Height" Text="{Binding Height, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_Height1" Orientation="Horizontal">
-                        <Label x:Name="l_Height1" Content="H1" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Height1" AttributeName="height1"/>
-                        <TextBox x:Name="tb_Height1" Text="{Binding Height1, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Height1" Content="H1" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Height1" AttributeName="height1" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Height1" Text="{Binding Height1, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_Width" Orientation="Horizontal">
-                        <Label x:Name="l_Width" Content="L" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Width" AttributeName="width"/>
-                        <TextBox x:Name="tb_Width" Text="{Binding Width, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Width" Content="L" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width" AttributeName="width" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Width" Text="{Binding Width, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_Width1" Orientation="Horizontal">
-                        <Label x:Name="l_Width1" Content="L1" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Width1" AttributeName="width1"/>
-                        <TextBox x:Name="tb_Width1" Text="{Binding Width1, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Width1" Content="L1" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width1" AttributeName="width1" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Width1" Text="{Binding Width1, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_Width2" Orientation="Horizontal">
-                        <Label x:Name="l_Width2" Content="L2" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Width2" AttributeName="width2"/>
-                        <TextBox x:Name="tb_Width2" Text="{Binding Width2, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Width2" Content="L2" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width2" AttributeName="width2" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Width2" Text="{Binding Width2, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_Width3" Orientation="Horizontal">
-                        <Label x:Name="l_Width3" Content="L3" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Width3" AttributeName="width3"/>
-                        <TextBox x:Name="tb_Width3" Text="{Binding Width3, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Width3" Content="L3" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width3" AttributeName="width3" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Width3" Text="{Binding Width3, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_Width4" Orientation="Horizontal">
-                        <Label x:Name="l_Width4" Content="L4" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Width4" AttributeName="width4"/>
-                        <TextBox x:Name="tb_Width4" Text="{Binding Width4, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Width4" Content="L4" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Width4" AttributeName="width4" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Width4" Text="{Binding Width4, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_Radius" Orientation="Horizontal">
-                        <Label x:Name="l_Radius" Content="R" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_Radius" AttributeName="radius"/>
-                        <TextBox x:Name="tb_Radius" Text="{Binding Radius, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_Radius" Content="R" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_Radius" AttributeName="radius" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_Radius" Text="{Binding Radius, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_OffsetH" Orientation="Horizontal">
-                        <Label x:Name="l_OffsetH" Content="OH" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_offsetH" AttributeName="offsetH"/>
-                        <TextBox x:Name="tb_OffsetH" Text="{Binding OffsetH, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_OffsetH" Content="OH" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_offsetH" AttributeName="offsetH" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_OffsetH" Text="{Binding OffsetH, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Name="sp_OffsetL" Orientation="Horizontal">
-                        <Label x:Name="l_OffsetL" Content="OL" Width="35"/>
-                        <UIControls:WpfFilterCheckBox Name="cb_offsetL" AttributeName="offsetL"/>
-                        <TextBox x:Name="tb_OffsetL" Text="{Binding OffsetL, Mode=TwoWay}" Height="25" Width="100"/>
+                        <Label x:Name="l_OffsetL" Content="OL" Width="35" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox Name="cb_offsetL" AttributeName="offsetL" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tb_OffsetL" Text="{Binding OffsetL, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
-                    
                 </StackPanel>
+                <!--Тип и параметры фаски/выкружки-->
                 <StackPanel Name="sp_typeChamfer" Orientation="Vertical" Margin="10,0">
                     <StackPanel Orientation="Horizontal">
-                        <Label x:Name="l_typeChamfer" Content="Тип фаски/выреза"/>
-                        <UIControls:WpfFilterCheckBox AttributeName="typeChamfer"/>
+                        <Label x:Name="l_typeChamfer" Content="Тип фаски/выреза" VerticalAlignment="Center"/>
+                        <UIControls:WpfFilterCheckBox AttributeName="typeChamfer" VerticalAlignment="Center"/>
                     </StackPanel>
                     <ComboBox x:Name="cb_typeChamfer" SelectedIndex="{Binding TypeChamfer}" Width="180" Height="160" ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionChanged="cb_typeChamfer_SelectionChanged">
                         <Canvas  Width="150" Height="150">
@@ -713,30 +722,9 @@
                         <TextBox x:Name="tb_DimensionF3" Text="{Binding DimensionF3, Mode=TwoWay}" Height="25" Width="100" VerticalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
-
             </StackPanel>
-
-            <Canvas  Width="150" Height="150" Margin="500,0">
-
-
-
-
-
-
-
-               
-
-
-
-
-
-
-            </Canvas>
-
         </Grid>
         <UIControls:WpfSaveLoad Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
         <UIControls:WpfOkApplyModifyGetOnOffCancel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ApplyClicked="WPFOkApplyModifyGetOnOffCancel_ApplyClicked" CancelClicked="WPFOkApplyModifyGetOnOffCancel_CancelClicked" GetClicked="WPFOkApplyModifyGetOnOffCancel_GetClicked" OkClicked="WPFOkApplyModifyGetOnOffCancel_OkClicked" OnOffClicked="WPFOkApplyModifyGetOnOffCancel_OnOffClicked" ModifyClicked="WPFOkApplyModifyGetOnOffCancel_ModifyClicked"/>
-       
-
     </Grid>
 </tsd:PluginWindowBase>

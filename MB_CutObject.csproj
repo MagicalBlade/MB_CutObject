@@ -117,7 +117,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)$(TargetName).dll" "c:\TeklaStructures\2020.0\nt\bin\plugins\MyPlugins\" /y
-xcopy "$(TargetDir)$(TargetName).pdb" "c:\TeklaStructures\2020.0\nt\bin\plugins\MyPlugins\" /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)$(TargetName).dll" "c:\TeklaStructures\2020.0\Environments\common\extensions\MyPlugins\" /y
+xcopy "$(TargetDir)$(TargetName).pdb" "c:\TeklaStructures\2020.0\Environments\common\extensions\MyPlugins\" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

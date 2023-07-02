@@ -384,7 +384,6 @@ namespace MB_CutObject.Models
                 booleanPart.SetOperativePart(booleanCP);
                 booleanPart.Insert();
                 booleanCP.Delete();
-                Model.CommitChanges();
                 Operation.DisplayPrompt("Готово");
             }
             catch (Exception Exc)
