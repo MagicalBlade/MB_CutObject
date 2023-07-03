@@ -62,7 +62,7 @@ namespace MB_CutObject.Models
 
     }
 
-    [Plugin("MB_CutObject")]
+    [Plugin("Мостостроение. Выкружки и вырезы.")]
     [PluginUserInterface("MB_CutObject.Views.MainWindow")]
     [InputObjectDependency(InputObjectDependency.DEPENDENT)]
     public class MB_CutObject : PluginBase
