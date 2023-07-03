@@ -307,7 +307,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
                     <!--Тип выреза-->
                     <StackPanel Orientation="Horizontal">
                         <UIControls:WpfFilterCheckBox AttributeName="typeCut"/>

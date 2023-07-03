@@ -64,6 +64,7 @@ namespace MB_CutObject.Models
 
     [Plugin("MB_CutObject")]
     [PluginUserInterface("MB_CutObject.Views.MainWindow")]
+    [InputObjectDependency(InputObjectDependency.DEPENDENT)]
     public class MB_CutObject : PluginBase
     {
         #region Fields
