@@ -107,7 +107,6 @@
     <None Include="Supporting\Выкружка №4.frw" />
     <None Include="Supporting\Выкружка №5.frw" />
     <None Include="Supporting\Выкружка №6.frw" />
-    <None Include="Supporting\Выкружка №7.frw" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
