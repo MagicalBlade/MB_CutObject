@@ -156,7 +156,7 @@ namespace MB_CutObject.Models
                 double centerpart = (solidpart.MaximumPoint.Z + solidpart.MinimumPoint.Z)/2;
 
                 ContourPlate booleanCP = new ContourPlate();
-                double thicknessCut = Math.Round(Math.Abs(solidpart.MaximumPoint.Z) + Math.Abs(solidpart.MinimumPoint.Z)) + 10;
+                double thicknessCut = Math.Round(solidpart.MaximumPoint.Z - solidpart.MinimumPoint.Z) + 10;
                 booleanCP.Profile.ProfileString = $"PL{thicknessCut}";
                 booleanCP.Material.MaterialString = "Steel_Undefined";
                 // В зависимости от выбранного типа выреза добавляем точки контурной пластины
