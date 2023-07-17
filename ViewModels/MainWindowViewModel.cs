@@ -127,7 +127,7 @@ namespace MB_CutObject.ViewModels
         public int TypeChamfer
         {
             get { return typeChamfer; }
-            set { typeChamfer = value; OnPropertyChanged("Mirror"); }
+            set { typeChamfer = value; OnPropertyChanged("TypeChamfer"); }
         }
 
 
